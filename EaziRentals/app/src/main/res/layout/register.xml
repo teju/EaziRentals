@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up into your Account"
+            android:text="Register with us"
             android:textStyle="bold|italic"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
@@ -44,7 +44,7 @@
             android:textSize="16dp"
             android:drawableLeft="@drawable/account"
             android:drawablePadding="6dp"
-            android:hint="Name"
+            android:hint="Full Name"
             android:layout_marginRight="60dp"
             android:layout_marginTop="20dp"
             android:padding="12dp" />
@@ -55,7 +55,7 @@
         android:inputType="number"
         android:imeOptions="actionNext"
         android:background="@android:drawable/editbox_background_normal"
-        android:hint="Phone Number"
+        android:hint="Mobile Number"
         android:padding="12dp"
         android:textSize="16dp"
         android:layout_marginLeft="60dp"
@@ -64,7 +64,8 @@
         android:drawablePadding="6dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/black" />
-    <EditText
+
+        <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/editbox_background_normal"
@@ -79,6 +80,111 @@
         android:drawableLeft="@drawable/email"
         android:drawablePadding="6dp"
         android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background_normal"
+            android:id="@+id/password"
+            android:padding="12dp"
+            android:hint="Password"
+            android:textSize="16dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/eye"
+            android:drawablePadding="6dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background_normal"
+            android:id="@+id/rpassword"
+            android:padding="12dp"
+            android:hint="Repeat Password"
+            android:textSize="16dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/eye"
+            android:drawablePadding="6dp"
+            android:textColor="@color/black" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background_normal"
+            android:id="@+id/dl"
+            android:padding="12dp"
+            android:hint="Driving License Number"
+            android:textSize="16dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/dl"
+            android:drawablePadding="6dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background_normal"
+            android:id="@+id/address"
+            android:padding="12dp"
+            android:hint="Address"
+            android:textSize="16dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/address_marker"
+            android:drawablePadding="6dp"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/spinner_bg"
+            android:layout_marginTop="10dp"
+            android:layout_height="50dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/city"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/city"
+                android:padding="12dp"
+                android:hint="City"
+                android:textSize="16dp"
+                android:drawablePadding="6dp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/spinner_bg"
+            android:layout_marginTop="10dp"
+            android:layout_height="50dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/state"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/state"
+                android:padding="12dp"
+                android:hint="State"
+                android:textSize="16dp"
+                android:drawableLeft="@drawable/state"
+                android:drawablePadding="6dp"
+                android:textColor="@color/black" />
+        </LinearLayout>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
