@@ -26,22 +26,8 @@
             android:layout_marginTop="30dp"
             android:textAllCaps="true"
             android:textSize="14dp"
-<<<<<<< HEAD
             android:textColor="@color/white" />
-=======
-            android:textColor="@color/green" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign in to your Account"
-            android:textStyle="bold|italic"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:textAllCaps="true"
-            android:textSize="14dp"
-            android:textColor="@color/green" />
 
->>>>>>> 9dc998cabf961ab223f2d3375d9a9e80313aefd4
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
