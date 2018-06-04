@@ -26,7 +26,8 @@
             android:layout_marginTop="30dp"
             android:textAllCaps="true"
             android:textSize="14dp"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
