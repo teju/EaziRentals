@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+        <include layout="@layout/header"></include>
+        <eazi.com.eazirentals.library.CustomViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/yellow"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pickup Date" />
+            <Button
+                android:layout_width="wrap_content"
+                android:id="@+id/pick_up_date"
+                android:onClick="pickupDate"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pickup Time"/>
+            <Spinner
+                android:layout_width="wrap_content"
+                android:id="@+id/pickup_time"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dropoff Date"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drop_Off_Date"
+                android:onClick="dropOffDate"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dropoff Time"/>
+            <Spinner
+                android:layout_width="wrap_content"
+                android:id="@+id/drop_time"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/book_now"
+            android:onClick="bookNow"
+            android:text="Book Now"/>
+    </LinearLayout>
+</ScrollView>
