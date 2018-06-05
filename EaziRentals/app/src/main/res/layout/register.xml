@@ -40,12 +40,12 @@
             android:imeOptions="actionNext"
             android:id="@+id/name"
             android:inputType="text"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="40dp"
             android:textSize="16dp"
             android:drawableLeft="@drawable/account"
             android:drawablePadding="6dp"
             android:hint="Full Name"
-            android:layout_marginRight="60dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
             android:padding="12dp" />
     <EditText
@@ -58,8 +58,8 @@
         android:hint="Mobile Number"
         android:padding="12dp"
         android:textSize="16dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:drawableLeft="@drawable/cellphone"
         android:drawablePadding="6dp"
         android:layout_marginTop="10dp"
@@ -74,8 +74,8 @@
         android:hint="Email"
         android:textSize="16dp"
         android:inputType="textEmailAddress"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/email"
         android:drawablePadding="6dp"
@@ -89,8 +89,8 @@
             android:padding="12dp"
             android:hint="Password"
             android:textSize="16dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/eye"
             android:drawablePadding="6dp"
@@ -104,8 +104,8 @@
             android:padding="12dp"
             android:hint="Repeat Password"
             android:textSize="16dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/eye"
             android:drawablePadding="6dp"
@@ -118,8 +118,8 @@
             android:padding="12dp"
             android:hint="Driving License Number"
             android:textSize="16dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/dl"
             android:drawablePadding="6dp"
@@ -133,56 +133,59 @@
             android:padding="12dp"
             android:hint="Address"
             android:textSize="16dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/address_marker"
             android:drawablePadding="6dp"
             android:textColor="@color/black" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginRight="44dp"
             android:background="@drawable/spinner_bg"
             android:layout_marginTop="10dp"
-            android:layout_height="50dp">
+            android:layout_height="43dp">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/city"/>
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/city"
-                android:padding="12dp"
-                android:hint="City"
-                android:textSize="16dp"
-                android:drawablePadding="6dp"
-                android:textColor="@color/black" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:background="@drawable/spinner_bg"
-            android:layout_marginTop="10dp"
-            android:layout_height="50dp">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:paddingLeft="3dp"
                 android:src="@drawable/state"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/state"
-                android:padding="12dp"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:hint="State"
                 android:textSize="16dp"
+                android:paddingLeft="3dp"
                 android:drawableLeft="@drawable/state"
                 android:drawablePadding="6dp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="44dp"
+            android:layout_marginRight="44dp"
+            android:background="@drawable/spinner_bg"
+            android:layout_marginTop="10dp"
+            android:layout_height="43dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="3dp"
+                android:src="@drawable/city"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/city"
+                android:hint="City"
+                android:textSize="16dp"
+                android:paddingLeft="3dp"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:textColor="@color/black" />
         </LinearLayout>
         <EditText
@@ -193,8 +196,8 @@
             android:padding="12dp"
             android:hint="Referral Id"
             android:textSize="16dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/account_edit"
             android:drawablePadding="6dp"
@@ -203,8 +206,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/terms_conditions"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal">

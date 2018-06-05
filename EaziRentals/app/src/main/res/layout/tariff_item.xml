@@ -8,30 +8,37 @@
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="0dp"
-            android:text="sdcscsc"
+            android:text="BIKE BRAND"
+            android:padding="5dp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="sdcscsc"
+            android:padding="5dp"
+            android:text="BIKE NAME"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="sdcscsc"
+            android:padding="5dp"
+            android:text="TARIFF PER HOUR
+MONDAY - FRIDAY"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="TARIFF PER DAY
+MONDAY - FRIDAY"
 
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="sdcscsc"
-
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="sdcscsc"
+            android:padding="5dp"
+            android:text="TARIFF PER DAY
+SATURDAY - SUNDAY"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
