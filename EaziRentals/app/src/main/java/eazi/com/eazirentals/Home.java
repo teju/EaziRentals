@@ -43,7 +43,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private Runnable runnable;
     String type = "";
 
-    String[] time = {"7.30 AM , 8.00 AM"};
+    String[] time = {"7.30 AM" , "8.00 AM"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

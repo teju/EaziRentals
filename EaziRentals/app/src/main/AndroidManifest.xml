@@ -21,7 +21,8 @@
         <activity android:name=".Home" />
         <activity android:name=".SelectBike" />
         <activity android:name=".BookingHistory" />
-        <activity android:name=".Tariff" />
+        <activity android:name=".Tariff"
+            android:screenOrientation="landscape"/>
         <activity android:name=".ReferAndEarn" />
         <activity android:name=".Offers" />
         <activity android:name=".AboutUs" />

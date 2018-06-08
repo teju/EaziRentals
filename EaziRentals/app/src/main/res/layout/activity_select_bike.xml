@@ -5,22 +5,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_gray"
     tools:context="eazi.com.eazirentals.SelectBike">
-    <include layout="@layout/header"></include>
+    <include layout="@layout/header"
+        android:id="@+id/header"></include>
     <GridView
         android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:columnWidth="100dp"
+        android:columnWidth="165dp"
         android:numColumns="auto_fit"
-        android:verticalSpacing="24dp"
-        android:horizontalSpacing="10dp"
+        android:verticalSpacing="7dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:horizontalSpacing="0dp"
+        android:layout_below="@+id/header"
         android:stretchMode="spacingWidthUniform" />
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/gridview"
         android:onClick="selectNow"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/buttob_bg"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Book Now"
+        android:textColor="@color/white"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>
