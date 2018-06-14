@@ -1,9 +1,12 @@
 package eazi.com.eazirentals;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 /**
@@ -11,28 +14,20 @@ import android.widget.Spinner;
  */
 
 public class Register extends AppCompatActivity {
-    String[] time = {"7.30 AM" , "8.00 AM"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
-        pickTime();
+        setContentView(R.layout.register_1);
+        Button buttonclick =(Button)findViewById(R.id.buttonclick);
+        buttonclick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Register.this,Register2.class);
+                startActivity(i);
+            }
+        });
     }
 
-    public void pickTime(){
-        Spinner state = (Spinner) findViewById(R.id.state);
-        ArrayAdapter pickup_timeaa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,time);
-        pickup_timeaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        state.setAdapter(pickup_timeaa);
-
-        Spinner city = (Spinner) findViewById(R.id.city);
-        ArrayAdapter drop_timeaa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,time);
-        drop_timeaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        city.setAdapter(drop_timeaa);
-
-    }
 
 }

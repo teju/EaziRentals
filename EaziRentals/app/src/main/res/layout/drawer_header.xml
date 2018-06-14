@@ -27,7 +27,7 @@
             android:textAlignment="center"
             android:id="@+id/profile_name"
             android:textColor="@color/white"
-            android:text="Tejaswini"
+            android:text="Senorita"
             android:textSize="18sp"/>
         <TextView
             android:layout_width="wrap_content"

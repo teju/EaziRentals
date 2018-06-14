@@ -214,10 +214,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     private class ImagePagerAdapter extends PagerAdapter {
         private int[] mImages = new int[] {
-                R.drawable.chiang_mai,
-                R.drawable.himeji,
-                R.drawable.petronas_twin_tower,
-                R.drawable.ulm
+                R.drawable.banner_1,
+                R.drawable.banner_2,
+                R.drawable.banner_3,
+                R.drawable.banner_4
         };
 
         @Override

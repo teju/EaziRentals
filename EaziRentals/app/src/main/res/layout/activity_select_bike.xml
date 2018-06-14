@@ -5,10 +5,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_gray"
     tools:context="eazi.com.eazirentals.SelectBike">
     <include layout="@layout/header"
-        android:id="@+id/header"></include>
+        android:id="@+id/header">
+    </include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:id="@+id/top_l"
+        android:orientation="horizontal"
+        android:layout_below="@+id/header">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick Up"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="7 June, 2 PM"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Drop Off" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="7 June, 11 PM"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_l"
+        android:text="CHOOSE YOUR FLEET"
+        android:textSize="18dp"
+        android:textAlignment="center"
+       android:id="@+id/title_text" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_text"
+        android:text="info! Please choose your bike to display the avialability"
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:id="@+id/sub_title" />
+
     <GridView
         android:id="@+id/gridview"
         android:layout_width="match_parent"
@@ -20,7 +85,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:horizontalSpacing="0dp"
-        android:layout_below="@+id/header"
+        android:layout_below="@+id/sub_title"
         android:stretchMode="spacingWidthUniform" />
     <Button
         android:layout_width="130dp"

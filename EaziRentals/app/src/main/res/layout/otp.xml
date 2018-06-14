@@ -2,30 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/black"
+    android:background="@color/yellow"
     android:layout_height="wrap_content">
+
     <TextView
+        android:id="@+id/txtview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="OTP has been sent to your mobile."
-        android:gravity="center_horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:id="@+id/txtview"
-        android:textColor="@color/white"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:textSize="18dp"
+        android:text="OTP has been sent to your mobile."
+        android:textColor="@color/black" />
+
     <EditText
+        android:id="@+id/otp"
         android:layout_width="150dp"
         android:layout_height="45dp"
-        android:id="@+id/otp"
-        android:inputType="number"
-        android:textSize="16dp"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
-        android:background="@android:drawable/editbox_background_normal"
         android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:hint="OTP"
+        android:textColorHint="@color/black"
+        android:inputType="number"
         android:textAlignment="center"
-        android:hint="OTP"/>
+        android:textSize="16dp" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -33,9 +38,9 @@
         android:id="@+id/submit"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/black"
         android:background="@drawable/buttob_bg"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:layout_marginBottom="20dp"
         android:text="SUBMIT"/>
 </LinearLayout>
