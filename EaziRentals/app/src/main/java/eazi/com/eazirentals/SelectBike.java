@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 public class SelectBike extends AppCompatActivity {
 
-    int[] bikes = {R.drawable.bike1,R.drawable.bike2,R.drawable.bike3,R.drawable.bike4,R.drawable.bike5};
+    int[] bikes = {R.drawable.bike1,R.drawable.bike2,R.drawable.bike3,R.drawable.bike4};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +33,7 @@ public class SelectBike extends AppCompatActivity {
     }
 
     public void selectNow(View v) {
-        Intent i = new Intent(SelectBike.this,Cart.class);
+        Intent i = new Intent(SelectBike.this,AvailableBikes.class);
         startActivity(i);
     }
 
@@ -82,31 +82,7 @@ public class SelectBike extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             try {
-                Integer i = (int)v.getTag();
-                final Dialog mBottomSheetDialog = new Dialog(mContext);
-                mBottomSheetDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                mBottomSheetDialog.setContentView(R.layout.bike_details);
-                mBottomSheetDialog.setCanceledOnTouchOutside(false);
-                mBottomSheetDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT);
-                mBottomSheetDialog.show();
-                ImageView bike_img = (ImageView)mBottomSheetDialog.findViewById(R.id.bike_img);
-                bike_img.setImageDrawable(getResources().getDrawable(bikes[i]));
-                Button check_out = (Button)mBottomSheetDialog.findViewById(R.id.check_out);
-                check_out.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(SelectBike.this,Cart.class);
-                        startActivity(i);
-                    }
-                });
-                Button add_more = (Button)mBottomSheetDialog.findViewById(R.id.add_more);
-                add_more.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mBottomSheetDialog.cancel();
-                    }
-                });
+
             } catch (Exception e){
                 System.out.println("EXCEPTION "+e.toString());
             }

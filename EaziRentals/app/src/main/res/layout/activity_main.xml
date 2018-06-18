@@ -6,14 +6,15 @@
     android:background="@drawable/lg_bg"
     android:layout_height="match_parent"
     android:weightSum="1">
-            <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/logo"
-            android:src="@drawable/logo"
-            android:layout_marginTop="70dp"
-            android:layout_gravity="center_horizontal"
-                android:layout_weight="0.16" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/logo"
+        android:src="@drawable/logo"
+        android:layout_marginTop="70dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.16" />
 
     <TextView
         android:id="@+id/textView"
@@ -45,17 +46,17 @@
         android:textSize="18dp" />
 
     <Button
-            android:layout_width="100dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="35dp"
-            android:textSize="16dp"
-            android:id="@+id/login_button"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
-            android:textColor="@color/white"
-            android:background="@drawable/buttob_bg"
-            android:text="LOGIN"/>
+        android:layout_width="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="35dp"
+        android:textSize="16dp"
+        android:id="@+id/login_button"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/white"
+        android:background="@drawable/buttob_bg"
+        android:text="LOGIN"/>
 
     <TextView
         android:id="@+id/sign_up"
@@ -67,6 +68,5 @@
         android:textColor="@color/yellow"
         android:textSize="16dp"
         android:textStyle="italic" />
-
 
 </LinearLayout>

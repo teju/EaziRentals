@@ -8,37 +8,38 @@
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="0dp"
-            android:text="BIKE BRAND"
+            android:id="@+id/bike_brand"
             android:padding="5dp"
+            android:textAlignment="center"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:padding="5dp"
-            android:text="BIKE NAME"
+            android:textAlignment="center"
+            android:id="@+id/bike_name"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:padding="5dp"
-            android:text="TARIFF PER HOUR
-MONDAY - FRIDAY"
+            android:textAlignment="center"
+            android:id="@+id/tariff_per_hour"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:id="@+id/tariff_per_day"
+            android:padding="5dp"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:padding="5dp"
-            android:text="TARIFF PER DAY
-MONDAY - FRIDAY"
-
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:text="TARIFF PER DAY
-SATURDAY - SUNDAY"
+            android:textAlignment="center"
+            android:id="@+id/tariff_per_day_weekend"
             android:layout_height="wrap_content" />
 
     </LinearLayout>

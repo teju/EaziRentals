@@ -31,6 +31,7 @@
         <activity android:name=".Faq" />
         <activity android:name=".Cart" />
         <activity android:name=".Register2"></activity>
+        <activity android:name=".AvailableBikes"></activity>
     </application>
 
 </manifest>

@@ -14,9 +14,10 @@
 
 
     <!--<color name="light_orange">#45f43c36</color>-->
-    <color name="light_orange">#bdbdbd</color>
+    <color name="light_orange">#ccc7c7</color>
 
     <color name="background">#f2f2f2</color>
     <color name="dark_gray">#c1bfbf</color>
+    <color name="dark1_gray">#818080</color>
 
 </resources>

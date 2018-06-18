@@ -8,6 +8,73 @@
     android:layout_height="match_parent"
     tools:context="eazi.com.eazirentals.Cart">
     <include layout="@layout/header"></include>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/dark_gray"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:text="GUARANTEED QUALITY : OUR TARIFF"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/yellow"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:text="BIKE BRAND"
+            android:id="@+id/bike_brand"
+            android:textColor="@color/black"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="BIKE NAME"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:id="@+id/bike_name"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:id="@+id/tariff_per_hour"
+            android:text="TARIFF PER HOUR
+MONDAY - FRIDAY"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:id="@+id/tariff_per_day"
+            android:padding="5dp"
+
+            android:text="TARIFF PER DAY
+MONDAY - FRIDAY"
+
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="0dp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:id="@+id/tariff_per_day_weekend"
+            android:text="TARIFF PER DAY
+SATURDAY - SUNDAY"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

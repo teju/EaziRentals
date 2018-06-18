@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="20dp"
-    tools:context="eazi.com.eazirentals.SelectBike">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <include layout="@layout/header"
         android:id="@+id/header">
     </include>
@@ -67,47 +61,31 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/top_l"
-        android:text="CHOOSE YOUR FLEET"
-        android:textSize="28dp"
-        android:textColor="@color/light_orange"
-        android:layout_marginTop="10dp"
         android:textAlignment="center"
-       android:id="@+id/title_text" />
-    <TextView
+        android:text="info! 6 bikes are available. Please choose as you require" />
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title_text"
-        android:text="info! Please choose your bike to display the avialability"
-        android:textSize="10dp"
-        android:textColor="@color/light_orange"
-        android:textAlignment="center"
-        android:id="@+id/sub_title" />
-
-    <GridView
-        android:id="@+id/gridview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:columnWidth="165dp"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="7dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:horizontalSpacing="0dp"
-        android:layout_marginBottom="50dp"
-        android:layout_below="@+id/sub_title"
-        android:stretchMode="spacingWidthUniform" />
-    <Button
-        android:layout_width="130dp"
-        android:layout_height="40dp"
-        android:onClick="selectNow"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/buttob_bg"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:text="Book Now"
-        android:textColor="@color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
-</RelativeLayout>
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/bike_list"></LinearLayout>
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Book Now"
+                android:id="@+id/book_now"
+                android:background="@drawable/buttob_bg"
+                android:layout_marginBottom="30dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

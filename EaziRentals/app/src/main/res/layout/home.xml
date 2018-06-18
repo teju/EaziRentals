@@ -41,6 +41,7 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/buttob_bg"
                     android:backgroundTint="@color/white"
+                    android:text="2/07/2018"
                     android:drawableRight="@drawable/calendar_text"
                     android:onClick="pickupDate" />
 
@@ -75,6 +76,7 @@
                     android:id="@+id/drop_Off_Date"
                     android:drawableRight="@drawable/calendar_text"
                     android:layout_marginTop="5dp"
+                    android:text="2/07/2018"
                     android:background="@drawable/buttob_bg"
                     android:backgroundTint="@color/white"
                     android:onClick="dropOffDate"/>
