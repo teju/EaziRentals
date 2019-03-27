@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/header"></include>
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@color/white"
+        xmlns:android="http://schemas.android.com/apk/res/android" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <eazi.com.eazirentals.library.CustomViewPager
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@color/dark_gray"
+                android:paddingTop="10dp"
+                android:paddingBottom="30dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:text="Pickup Date" />
+
+                        <Button
+                            android:id="@+id/pick_up_date"
+                            android:layout_width="150dp"
+                            android:paddingRight="8dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/buttob_bg"
+                            android:backgroundTint="@color/white"
+                            android:text="2/07/2018"
+                            android:drawableRight="@drawable/calendar_text"
+                            android:onClick="pickupDate" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="30dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:text="Pickup Time"/>
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/spinner_bg">
+                            <Spinner
+                                android:layout_width="match_parent"
+                                android:id="@+id/pickup_time"
+                                android:textAlignment="center"
+                                android:layout_height="match_parent" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="10dp"
+                            android:text="Dropoff Date"/>
+                        <Button
+                            android:layout_width="150dp"
+                            android:layout_height="40dp"
+                            android:paddingRight="8dp"
+
+                            android:id="@+id/drop_Off_Date"
+                            android:drawableRight="@drawable/calendar_text"
+                            android:layout_marginTop="5dp"
+                            android:text="2/07/2018"
+                            android:background="@drawable/buttob_bg"
+                            android:backgroundTint="@color/white"
+                            android:onClick="dropOffDate"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="30dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black"
+                            android:text="Dropoff Time"/>
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/spinner_bg">
+                            <Spinner
+                                android:layout_width="match_parent"
+                                android:textAlignment="center"
+                                android:id="@+id/drop_time"
+                                android:layout_height="match_parent" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/book_now"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/buttob_bg"
+                    android:onClick="bookNow"
+                    android:text="Book Now"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
