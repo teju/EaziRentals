@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="eazi.com.eazirentals"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="20"
+        android:targetSdkVersion="25" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <meta-data
+        android:name="android.support.VERSION"
+        android:value="25.3.1" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar" >
+        <activity android:name="eazi.com.eazirentals.LaunchScreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="eazi.com.eazirentals.Register" />
+        <activity android:name="eazi.com.eazirentals.LoginActivity" />
+        <activity android:name="eazi.com.eazirentals.Home" />
+        <activity android:name="eazi.com.eazirentals.SelectBike" />
+        <activity android:name="eazi.com.eazirentals.BookingHistory" />
+        <activity
+            android:name="eazi.com.eazirentals.Tariff"
+            android:screenOrientation="landscape" />
+        <activity android:name="eazi.com.eazirentals.ReferAndEarn" />
+        <activity android:name="eazi.com.eazirentals.Offers" />
+        <activity android:name="eazi.com.eazirentals.AboutUs" />
+        <activity android:name="eazi.com.eazirentals.ContactUs" />
+        <activity android:name="eazi.com.eazirentals.Faq" />
+        <activity android:name="eazi.com.eazirentals.Cart" />
+        <activity android:name="eazi.com.eazirentals.Register2" />
+        <activity android:name="eazi.com.eazirentals.AvailableBikes" />
+    </application>
+
+</manifest>

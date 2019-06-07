@@ -1,0 +1,4 @@
+#Fri Jun 07 16:40:15 IST 2019
+base.0=/Users/tejaswini/Documents/Freelancing_Basavaraj/EaziRentals/EaziRentals-branch_4/EaziRentals/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+renamed.0=classes.dex
+file.0=/Users/tejaswini/Documents/Freelancing_Basavaraj/EaziRentals/EaziRentals-branch_4/EaziRentals/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

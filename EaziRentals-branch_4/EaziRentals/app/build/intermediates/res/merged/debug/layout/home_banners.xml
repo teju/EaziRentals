@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+<ImageView
+    android:layout_width="match_parent"
+    android:id="@+id/banner_image"
+    android:src="@drawable/banner_4"
+    android:scaleType="fitXY"
+    android:layout_height="200dp" />
+
+    <TextView
+        android:layout_width="400dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentTop="true"
+        android:text="EXPLORATION STORIES"
+        android:id="@+id/title_text"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:textSize="10dp"/>
+
+    <TextView
+        android:layout_width="400dp"
+        android:layout_below="@+id/title_text"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:text="OUR TRAVELLERS STORIES"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"/>
+    <TextView
+        android:layout_width="400dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/symbol_and"
+        android:textColor="@color/white"
+        android:layout_height="50dp"
+        android:textSize="18dp"/>
+    <TextView
+        android:layout_width="400dp"
+        android:layout_marginBottom="0dp"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:text="BEYOND......."
+        android:layout_height="30dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="18dp"/>
+</RelativeLayout>

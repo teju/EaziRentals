@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/tejaswini/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.4/695b63d702f505b9b916e02272e3b6381bade7f/gson-2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
+        <dex dex="/Users/tejaswini/Documents/Freelancing_Basavaraj/EaziRentals/EaziRentals-branch_4/EaziRentals/app/build/intermediates/pre-dexed/debug/gson-2.4_561825e9e24fe2fd8dc56b35c9d4300336025f0a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/tejaswini/.android/build-cache/ae4af8413465735b6230ebaa73743e08e6b51c50/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e70a3fed299d84cd868614e11021664d72b8e488">
+        <dex dex="/Users/tejaswini/Documents/Freelancing_Basavaraj/EaziRentals/EaziRentals-branch_4/EaziRentals/app/build/intermediates/pre-dexed/debug/classes_b603e67df1c493addaa46da8698d766f109e23f1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/tejaswini/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.5.2/ecf534dba3a8446ce84cbb797d314763be212a68/glide-3.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecf534dba3a8446ce84cbb797d314763be212a68">
+        <dex dex="/Users/tejaswini/Documents/Freelancing_Basavaraj/EaziRentals/EaziRentals-branch_4/EaziRentals/app/build/intermediates/pre-dexed/debug/glide-3.5.2_022f6045f5f00ae214bbe63ad2d5588f0dcacc27.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/tejaswini/.android/build-cache/95a0eb167f51a5a0bb1947f7020eb9910ceec84b/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a6a1348ac6f3e2890a2cd7637b1e18f969ccc1e5">
+        <dex dex="/Users/tejaswini/Documents/Freelancing_Basavaraj/EaziRentals/EaziRentals-branch_4/EaziRentals/app/build/intermediates/pre-dexed/debug/classes_2123840f8715c8688a29ba794dd8903cd845bf2c.jar" />
+    </item>
+
+</items>

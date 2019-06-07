@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/home"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/booking_history"
+            android:icon="@drawable/book_open_page_variant"
+            android:title="Booking History" />
+        <item
+            android:id="@+id/tariff"
+            android:icon="@drawable/home"
+            android:title="Tariff" />
+
+        <item
+            android:id="@+id/refer_earn"
+            android:icon="@drawable/account_edit"
+            android:title="Refer and earn" />
+        <item
+            android:id="@+id/offers"
+            android:icon="@drawable/tag"
+            android:title="Offers" />
+        <item
+            android:id="@+id/contact_us"
+            android:icon="@drawable/contact_mail"
+            android:title="Contact" />
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/home"
+            android:title="About Us" />
+        <item
+            android:id="@+id/faq"
+            android:icon="@drawable/help_circle"
+            android:title="FAQ" />
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/login_variant"
+            android:title="LogOut" />
+
+    </group>
+
+
+</menu>

@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/Users/tejaswini/Documents/Freelancing_Basavaraj/EaziRentals/EaziRentals-branch_4/EaziRentals/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 45,
+                    "endOffset": 96
+                },
+                "from": {
+                    "file": "/Users/tejaswini/.android/build-cache/a9bafad8549621cf12f60dfc73bd65139f1aa133/output/res/values/values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 229,
+                        "endColumn": 45,
+                        "endOffset": 270
+                    }
+                }
+            }
+        ]
+    }
+]
