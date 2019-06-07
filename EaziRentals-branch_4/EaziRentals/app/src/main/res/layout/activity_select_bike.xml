@@ -38,8 +38,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:textAlignment="center"
-                android:text="7 June, 2 PM"/>
+                android:id="@+id/pick_up_time"
+                android:textAlignment="center" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -61,8 +61,8 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="18dp"
-                android:text="7 June, 11 PM"/>
+                android:id="@+id/dropoff_up_time"
+                android:textSize="18dp" />
 
         </LinearLayout>
 
@@ -93,9 +93,7 @@
             android:textColor="@color/black"
             android:textAlignment="center"
             android:id="@+id/sub_title" />
-
     </LinearLayout>
-
     <GridView
         android:id="@+id/gridview"
         android:layout_width="match_parent"

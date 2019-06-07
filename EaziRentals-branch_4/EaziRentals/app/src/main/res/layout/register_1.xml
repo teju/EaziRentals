@@ -125,7 +125,7 @@
 
 
             <Button
-                android:id="@+id/buttonclick"
+                android:id="@+id/signup"
                 android:layout_width="120dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center_horizontal"

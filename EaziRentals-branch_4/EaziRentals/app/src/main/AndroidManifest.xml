@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eazi.com.eazirentals">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -10,7 +13,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".LaunchScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Register" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".Home" />
         <activity android:name=".SelectBike" />
         <activity android:name=".BookingHistory" />
@@ -30,8 +34,8 @@
         <activity android:name=".ContactUs" />
         <activity android:name=".Faq" />
         <activity android:name=".Cart" />
-        <activity android:name=".Register2"></activity>
-        <activity android:name=".AvailableBikes"></activity>
+        <activity android:name=".Register2" />
+        <activity android:name=".AvailableBikes" />
     </application>
 
 </manifest>

@@ -35,9 +35,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
                 android:textColor="@color/black"
-
-                android:textAlignment="center"
-                android:text="7 June, 2 PM"/>
+                android:id="@+id/pick_up_time"
+                android:textAlignment="center" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -60,8 +59,7 @@
                 android:textAlignment="center"
                 android:textSize="18dp"
                 android:textColor="@color/black"
-
-                android:text="7 June, 11 PM"/>
+                android:id="@+id/dropoff_up_time" />
 
         </LinearLayout>
 
