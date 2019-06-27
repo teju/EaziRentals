@@ -58,8 +58,8 @@ public class SelectBike extends AppCompatActivity implements View.OnClickListene
         dropoff_up_time = (TextView)findViewById(R.id.dropoff_up_time);
         pick_up_time = (TextView)findViewById(R.id.pick_up_time);
         pick_up_time.setText(Helper.convertDate(getIntent().
-                getStringExtra(Constants.PICKUP_DATE),Constants.format_2)+", "+getIntent().getStringExtra(Constants.PICKUP_TIME));
-        dropoff_up_time.setText(Helper.convertDate(getIntent().getStringExtra(Constants.DROP_DATE),Constants.format_2)+
+                getStringExtra(Constants.PICKUP_DATE),Constants.format_3,Constants.format_2)+", "+getIntent().getStringExtra(Constants.PICKUP_TIME));
+        dropoff_up_time.setText(Helper.convertDate(getIntent().getStringExtra(Constants.DROP_DATE),Constants.format_3,Constants.format_2)+
                 ", "+getIntent().getStringExtra(Constants.DROP_TIME));
         callGetBikeList();
     }

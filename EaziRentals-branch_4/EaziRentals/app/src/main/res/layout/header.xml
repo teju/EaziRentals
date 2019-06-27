@@ -36,6 +36,33 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_centerVertical="true"
+        android:id="@+id/notifications"
         android:src="@drawable/bell" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_marginRight="20dp"
+        android:id="@+id/cart_button"
+        android:layout_toLeftOf="@+id/notifications"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_height="20dp"
+            android:text="21"
+            android:textSize="12dp"
+            android:id="@+id/cart_count"
+            android:backgroundTint="@color/light_red2"
+            android:background="@drawable/checkbox_blank_circle"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/white"/>
+        <ImageView
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:tint="@color/white"
+            android:layout_centerVertical="true"
+            android:src="@drawable/cart" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

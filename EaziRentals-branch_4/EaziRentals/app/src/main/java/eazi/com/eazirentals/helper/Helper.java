@@ -22,19 +22,19 @@ import java.util.regex.Pattern;
 
 public class Helper {
 
-    public static String convertDate(String date,String format ){
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "dd/MM/yy");
+    public static String convertDate(String date,String fromFormat ,String toFormat){
+        SimpleDateFormat dateFormat = new SimpleDateFormat(fromFormat);
 
         Date myDate = null;
+        SimpleDateFormat timeFormat = null;
         try {
             myDate = dateFormat.parse(date);
+            timeFormat = new SimpleDateFormat(toFormat);
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        SimpleDateFormat timeFormat = new SimpleDateFormat(format);
         String finalDate = timeFormat.format(myDate);
         return finalDate;
     }
@@ -98,6 +98,10 @@ public class Helper {
             return true;
         }
         return false;
+    }
+    public static double calculateGst(double total){
+        double gst = (total / 100.0f) * 15;
+        return gst;
     }
 
 }

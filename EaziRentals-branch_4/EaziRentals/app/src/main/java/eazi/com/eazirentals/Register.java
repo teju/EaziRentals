@@ -36,7 +36,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
     private EditText name,phone,email,password,rpassword;
     private TextView title;
-    private boolean isRegister;
+    private boolean isRegister,ISFromCart;
     private VerifyOtpResult data;
 
     @Override
@@ -55,6 +55,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         password = (EditText)findViewById(R.id.password);
         rpassword = (EditText)findViewById(R.id.rpassword);
         isRegister = getIntent().getBooleanExtra(Constants.ISRegister,true);
+        ISFromCart = getIntent().getBooleanExtra(Constants.ISFromCart,true);
         if(isRegister) {
             title.setVisibility(View.VISIBLE);
             phone.setVisibility(View.VISIBLE);
@@ -63,7 +64,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         } else {
             callGetUSerprofileAPI();
             title.setVisibility(View.GONE);
-            phone.setVisibility(View.GONE);
             password.setVisibility(View.GONE);
             rpassword.setVisibility(View.GONE);
         }
@@ -93,6 +93,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 }
             } else {
                 intent.putExtra(Constants.ISRegister,false);
+                intent.putExtra(Constants.ISFromCart,ISFromCart);
+                double subtotal = getIntent().getDoubleExtra(Constants.SUB_TOTAL, 0);
+                intent.putExtra(Constants.SUB_TOTAL,subtotal);
                 intent.putExtra(Constants.USER_NAME, name.getText().toString());
                 intent.putExtra(Constants.USER_EMAIL, email.getText().toString());
                 intent.putExtra(Constants.DRIVINGLICENCE, data.getUser_details().getDriving_no());
@@ -174,5 +177,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         }
 
     }
+
 
 }

@@ -40,6 +40,7 @@ public class Register2 extends AppCompatActivity implements View.OnClickListener
     private CheckBox agree;
     private StateResult stateResult;
     private boolean isRegister;
+    private boolean isFromCart = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class Register2 extends AppCompatActivity implements View.OnClickListener
 
     public void initUI(){
         isRegister = getIntent().getBooleanExtra(Constants.ISRegister,true);
+        isFromCart = getIntent().getBooleanExtra(Constants.ISFromCart,false);
         callStatesAPI();
 
         address = (EditText)findViewById(R.id.address);
@@ -216,9 +218,15 @@ public class Register2 extends AppCompatActivity implements View.OnClickListener
                                     startActivity(i);
                                 } else {
                                     new CustomToast().Show_Toast(Register2.this, data.getMessage(), R.color.green);
-
-                                    Intent i = new Intent(Register2.this, Home.class);
-                                    startActivity(i);
+                                    if(!isFromCart) {
+                                        Intent i = new Intent(Register2.this, Home.class);
+                                        startActivity(i);
+                                    } else {
+                                        Intent i =new Intent(Register2.this,CartDetails.class);
+                                        double subtotal = getIntent().getDoubleExtra(Constants.SUB_TOTAL, 0);
+                                        i.putExtra(Constants.SUB_TOTAL,subtotal);
+                                        startActivity(i);
+                                    }
                                 }
                             } else {
                                 if (data.getMessage() != null) {
@@ -254,6 +262,18 @@ public class Register2 extends AppCompatActivity implements View.OnClickListener
             }
         } else {
             callSignUPAPI();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(isFromCart) {
+            Intent i =new Intent(Register2.this,CartDetails.class);
+            startActivity(i);
+        } else {
+            super.onBackPressed();
+
         }
     }
 }

@@ -27,6 +27,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,12 +40,13 @@ import java.util.Locale;
 import eazi.com.eazirentals.helper.ConstantStrings;
 import eazi.com.eazirentals.helper.Constants;
 import eazi.com.eazirentals.helper.CustomToast;
+import eazi.com.eazirentals.helper.DataBaseHelper;
 import eazi.com.eazirentals.helper.Notify;
 import eazi.com.eazirentals.helper.SharedPreference;
 import eazi.com.eazirentals.library.CustomViewPager;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-        AdapterView.OnItemSelectedListener {
+        AdapterView.OnItemSelectedListener,View.OnClickListener {
 
     private Handler handler;
     private int delay = 5000; //milliseconds
@@ -58,6 +60,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     List<String> dropoffptime = new ArrayList<>();
     private Button pick_up_date,drop_Off_Date;
     private Spinner pickup_time,drop_time;
+    private DataBaseHelper db;
+    private TextView cart_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         drop_Off_Date = (Button)findViewById(R.id.drop_Off_Date);
         pickup_time = (Spinner) findViewById(R.id.pickup_time);
         drop_time = (Spinner) findViewById(R.id.drop_time);
+        RelativeLayout cart_button = (RelativeLayout) findViewById(R.id.cart_button);
+        cart_count = (TextView) findViewById(R.id.cart_count);
         pickup_time.setOnItemSelectedListener(this);
         drop_time.setOnItemSelectedListener(this);
         System.out.println("Home124 pick_time_pos getId initUI "+pickup_time.getId());
@@ -134,10 +140,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         pick_up_date.setText(sdf.format(new Date()));
         drop_Off_Date.setText(sdf.format(new Date()));
+        cart_button.setOnClickListener(this);
 
+        db = new DataBaseHelper(this);
 
         makeTimeList();
     }
+
 
     public void makeTimeList() {
         double i = 7.00;
@@ -288,6 +297,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     protected void onResume() {
         super.onResume();
         handler.postDelayed(runnable, delay);
+        if(db.getAllContacts("").size() == 0) {
+            cart_count.setVisibility(View.GONE);
+
+        } else {
+            cart_count.setVisibility(View.VISIBLE);
+            cart_count.setText(String.valueOf(db.getAllContacts("").size()));
+        }
     }
 
     @Override
@@ -362,6 +378,19 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     }
 
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.cart_button) {
+            if(db.getAllContacts("").size() == 0) {
+                new CustomToast().Show_Toast(Home.this, ConstantStrings.noitems_in_cart, R.color.light_red2);
+            } else {
+                Intent i =new Intent(Home.this,Cart.class);
+                startActivity(i);
+            }
+
+        }
+    }
+
     private class ImagePagerAdapter extends PagerAdapter {
         private int[] mImages = new int[] {
                 R.drawable.banner_1,
@@ -401,5 +430,20 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Notify.show(this, "Are yoy sure you want to exit this app ?", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(which == dialog.BUTTON_POSITIVE) {
+                    Intent a = new Intent(Intent.ACTION_MAIN);
+                    a.addCategory(Intent.CATEGORY_HOME);
+                    a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(a);
+                    finish();
+                }
+            }
+        },"OK","Cancel");
+    }
 }

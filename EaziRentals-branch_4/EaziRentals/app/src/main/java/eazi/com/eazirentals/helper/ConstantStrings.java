@@ -20,4 +20,7 @@ public class ConstantStrings {
     public static String pickupDate = "Pickup date cannot be lesser than current date";
     public static String dropDate = "Dropoff date cannot be lesser than pickup date";
     public static String logout = "Are you sure you want to logout?";
+    public static String addedtocart = "Bike added to cart";
+    public static String deletedFromCart = "Bike removed from cart";
+    public static String noitems_in_cart = "There are no items available in cart";
 }

@@ -36,6 +36,12 @@
         <activity android:name=".Cart" />
         <activity android:name=".Register2" />
         <activity android:name=".AvailableBikes" />
+        <activity android:name=".CartDetails" />
+        <activity android:name=".PaymentSuccess"></activity>
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_live_nqrFuyeU67diR7" />
+
     </application>
 
 </manifest>

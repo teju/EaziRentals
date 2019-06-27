@@ -5,14 +5,20 @@
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="wrap_content">
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:tint="@color/light_red2"
-        android:scaleType="centerInside"
-        android:layout_alignParentRight="true"
+    <RelativeLayout
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_margin="20dp"
-        android:src="@drawable/minus_circle"/>
+        android:id="@+id/delete_item"
+        android:layout_alignParentRight="true">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:tint="@color/light_red2"
+            android:scaleType="centerInside"
+            android:src="@drawable/minus_circle"/>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,11 +33,11 @@
             android:layout_height="100dp" />
         <TextView
             android:layout_width="wrap_content"
-            android:text="Thunderbird"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:gravity="center"
             android:textStyle="bold"
+            android:id="@+id/bike_name"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content" />
         <LinearLayout
@@ -46,6 +52,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:layout_height="wrap_content"
+                android:id="@+id/from_date"
                 android:text="March 24th Sep\n2018\n10:00 AM" />
             <ImageView
                 android:layout_width="wrap_content"
@@ -59,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/black"
+                android:id="@+id/to_date"
                 android:layout_height="wrap_content"
                 android:text="March 25th Sep\n2018\n11:00 AM" />
         </LinearLayout>
@@ -67,6 +75,7 @@
             android:layout_height="wrap_content"
             android:textSize="18dp"
             android:textColor="@color/green"
+            android:id="@+id/price"
             android:textStyle="bold"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="8dp"

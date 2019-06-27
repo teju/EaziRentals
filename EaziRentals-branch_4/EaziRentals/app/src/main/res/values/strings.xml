@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">Eezee Rentals</string>
+    <string name="success_message">Successfully booking completed</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="pick_address">331/C KIADB Industrial area Near Infosys Gate number 2 Hebbal Mysore 570018</string>
+    <string name="terms_conditiins">I accept al the terms &amp; conditions of Ezeerentals.</string>
     <string name="symbol_and"> TO THE HILLS OF SATARA &amp;</string>
-    <string name="welcome_eazy">Ezeerentals - A hassel free, simple bike rental company of Royal City, Mysore. We have a wide range of scooters and bikes available to rent and move on. We are authorized by RTO and we are the first company in Mysore to hold the rental boards on bike. Ezeerentals provides more option for visiotrs of Mysore to explore in and around places like</string>
+    <string name="welcome_eazy">Ezeerentals - A hassel free, simple bike rental company of Royal City,
+        Mysore. We have a wide range of scooters and bikes available to rent and move on.
+        We are authorized by RTO and we are the first company in Mysore to hold the rental
+        boards on bike. Ezeerentals provides more option for visiotrs of Mysore to explore in and
+        around places like</string>
 </resources>
 

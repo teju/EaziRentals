@@ -153,11 +153,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingTop="8dp"
-                    android:text="Accept Terms &amp; Conditions"
+                    android:text="@string/terms_conditiins"
                     android:textAlignment="center"
                     android:textColor="@color/dark1_gray"
                     android:textSize="16dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:textStyle="bold" />
             </LinearLayout>
 

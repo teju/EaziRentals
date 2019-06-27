@@ -30,6 +30,7 @@ import eazi.com.eazirentals.api.APICalls;
 import eazi.com.eazirentals.helper.ConstantStrings;
 import eazi.com.eazirentals.helper.Constants;
 import eazi.com.eazirentals.helper.CustomToast;
+import eazi.com.eazirentals.helper.DataBaseHelper;
 import eazi.com.eazirentals.helper.Helper;
 import eazi.com.eazirentals.helper.Loader;
 import eazi.com.eazirentals.helper.SharedPreference;
@@ -46,6 +47,7 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
     int[] bikes = {R.drawable.bike1,R.drawable.bike2,R.drawable.bike3,R.drawable.banner_3};
     private BikeListResponse data;
     private TextView dropoff_up_time,pick_up_time;
+    private DataBaseHelper db;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -53,19 +55,20 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.available_bikes);
         initUI();
-
-
     }
 
     private void initUI() {
+        db = new DataBaseHelper(this);
+        ImageView back = (ImageView) findViewById(R.id.back);
+        back.setOnClickListener(this);
         listView = (LinearLayout)findViewById(R.id.bike_list);
         Button book_now = (Button)findViewById(R.id.book_now);
         book_now.setOnClickListener(this);
         dropoff_up_time = (TextView)findViewById(R.id.dropoff_up_time);
         pick_up_time = (TextView)findViewById(R.id.pick_up_time);
         pick_up_time.setText(Helper.convertDate(getIntent().
-                getStringExtra(Constants.PICKUP_DATE),Constants.format_2)+", "+getIntent().getStringExtra(Constants.PICKUP_TIME));
-        dropoff_up_time.setText(Helper.convertDate(getIntent().getStringExtra(Constants.DROP_DATE),Constants.format_2)+
+                getStringExtra(Constants.PICKUP_DATE),Constants.format_3,Constants.format_2)+", "+getIntent().getStringExtra(Constants.PICKUP_TIME));
+        dropoff_up_time.setText(Helper.convertDate(getIntent().getStringExtra(Constants.DROP_DATE),Constants.format_3,Constants.format_2)+
                 ", "+getIntent().getStringExtra(Constants.DROP_TIME));
         callGetBikeList();
 
@@ -82,14 +85,46 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
             BikeList bikeList = bikeLists.get(i);
             View child = inflater.inflate(R.layout.bike_item, null);
             ImageView bike_img = (ImageView)child.findViewById(R.id.bike_img);
+            TextView bike_name = (TextView)child.findViewById(R.id.bike_name);
+            TextView location = (TextView)child.findViewById(R.id.location);
+            TextView price = (TextView)child.findViewById(R.id.price);
+            TextView km = (TextView)child.findViewById(R.id.km);
             Button add_bikes_button = (Button)child.findViewById(R.id.add_bikes_button);
+            add_bikes_button.setTag(i);
             add_bikes_button.setVisibility(View.VISIBLE);
+            System.out.println("setListView "+containsName(bikeList.getId()));
+            if(containsName(bikeList.getId())) {
+                add_bikes_button.setText("Added to cart");
+                add_bikes_button.setEnabled(false);
+                add_bikes_button.setBackgroundTintList(getResources().getColorStateList(R.color.dark1_gray));
+            } else {
+                add_bikes_button.setText("Add to cart");
+                add_bikes_button.setOnClickListener(this);
+                add_bikes_button.setBackgroundTintList(getResources().getColorStateList(R.color.yellow));
+            }
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(10, 10, 10, 10);
-            Glide.with(this).load(bikeList.getImage())
-                    .into(bike_img);
+            bike_name.setText(bikeList.getName());
+            location.setText(bikeList.getBranch());
+            km.setText(bikeList.getKm());
+            price.setText("\u20B9 "+bikeList.getPrice());
+            Glide.with(this).load(bikeList.getImage()).into(bike_img);
+
+
             listView.addView(child,layoutParams);
         }
+    }
+
+    private boolean containsName( final String bike_id) {
+        List<BikeList> bikeListsTemp = db.getAllContacts("");
+
+        for (final BikeList bikeList : bikeListsTemp) {
+            if (bikeList.getId().equals(bike_id)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void callGetBikeList() {
@@ -98,10 +133,10 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
 
             params.add(new BasicNameValuePair("user_id", SharedPreference.getString(AvailableBikes.this, Constants.KEY_USER_ID)));
             params.add(new BasicNameValuePair("access_token",SharedPreference.getString(AvailableBikes.this,Constants.KEY_ACCESS_TOKEN)));
-            params.add(new BasicNameValuePair("pickup_date", Helper.convertDate(getIntent().getStringExtra(Constants.PICKUP_DATE),Constants.format_1)));
-            params.add(new BasicNameValuePair("pickup_time",getIntent().getStringExtra(Constants.PICKUP_TIME)));
-            params.add(new BasicNameValuePair("dropoff_date", Helper.convertDate(getIntent().getStringExtra(Constants.DROP_DATE),Constants.format_1)));
-            params.add(new BasicNameValuePair("dropoff_time",getIntent().getStringExtra(Constants.DROP_TIME)));
+            params.add(new BasicNameValuePair("pickup_date", Helper.convertDate(getIntent().getStringExtra(Constants.PICKUP_DATE),Constants.format_3,Constants.format_1)));
+            params.add(new BasicNameValuePair("pickup_time",Helper.convertDate(getIntent().getStringExtra(Constants.PICKUP_TIME),Constants.format_4,Constants.format_5)));
+            params.add(new BasicNameValuePair("dropoff_date", Helper.convertDate(getIntent().getStringExtra(Constants.DROP_DATE),Constants.format_3,Constants.format_1)));
+            params.add(new BasicNameValuePair("dropoff_time",Helper.convertDate(getIntent().getStringExtra(Constants.DROP_TIME),Constants.format_4,Constants.format_5)));
             params.add(new BasicNameValuePair("bike_name",getIntent().getStringExtra(Constants.BIKE_NAME)));
 
             Loader.show(this);
@@ -145,9 +180,25 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(View v) {
-        Intent i =new Intent(AvailableBikes.this,Cart.class);
-        startActivity(i);
+        if(v.getId() == R.id.book_now) {
+            Intent i =new Intent(AvailableBikes.this,Cart.class);
+            startActivity(i);
+        } else if(v.getId() == R.id.add_bikes_button) {
+            int i = (Integer)v.getTag();
+            List<BikeList> bikeLists = data.getBike_list();
+            BikeList bikeList = bikeLists.get(i);
+            new CustomToast().Show_Toast(AvailableBikes.this, ConstantStrings.addedtocart, R.color.green);
+
+            db.addToCart(db,bikeList.getName(),bikeList.getImage(),bikeList.getId(),bikeList.getPrice()
+                    ,bikeList.getBranch(),bikeList.getFrom(),bikeList.getTo(),
+                    SharedPreference.getString(AvailableBikes.this, Constants.KEY_USER_ID));
+            setListView();
+        } else if(v.getId() == R.id.back) {
+            super.onBackPressed();
+        }
+
     }
 }
