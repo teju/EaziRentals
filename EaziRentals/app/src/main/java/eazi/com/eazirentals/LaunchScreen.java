@@ -23,7 +23,7 @@ public class LaunchScreen extends AppCompatActivity {
             CountDownTimer c = new CountDownTimer(2000, 1000) {
                 public void onFinish() {
                     //Display activity_no internet xml
-                    Intent intent = new Intent(LaunchScreen.this, Home.class);
+                    Intent intent = new Intent(LaunchScreen.this, SelectCity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     finish();
                     startActivity(intent);

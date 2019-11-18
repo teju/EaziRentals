@@ -37,11 +37,13 @@
         <activity android:name=".Register2" />
         <activity android:name=".AvailableBikes" />
         <activity android:name=".CartDetails" />
-        <activity android:name=".PaymentSuccess"></activity>
+        <activity android:name=".PaymentSuccess" />
+
         <meta-data
             android:name="com.razorpay.ApiKey"
             android:value="rzp_live_nqrFuyeU67diR7" />
 
+        <activity android:name=".SelectCity"></activity>
     </application>
 
 </manifest>

@@ -5,22 +5,16 @@
     android:background="@color/white"
     android:id="@+id/container"
     android:layout_height="wrap_content">
-    <eazi.com.eazirentals.helper.SquareImageView
-        android:layout_width="130dp"
-        android:id="@+id/bike_image"
-        android:layout_height="130dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/city_name"
+        android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content" />
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_margin="20dp"
         android:id="@+id/select_bike_checkbox"
         android:layout_height="wrap_content" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:layout_below="@+id/bike_image"
-        android:id="@+id/bike_name"
-        android:textColor="@color/black"/>
 </RelativeLayout>

@@ -220,7 +220,7 @@ public class Register2 extends AppCompatActivity implements View.OnClickListener
                                 } else {
                                     new CustomToast().Show_Toast(Register2.this, data.getMessage(), R.color.green);
                                     if(!isFromCart) {
-                                        Intent i = new Intent(Register2.this, Home.class);
+                                        Intent i = new Intent(Register2.this, SelectCity.class);
                                         startActivity(i);
                                     } else {
                                         Intent i =new Intent(Register2.this,CartDetails.class);

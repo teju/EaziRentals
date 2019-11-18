@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.PagerAdapter;
@@ -29,21 +30,35 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
+import eazi.com.eazirentals.api.APICalls;
 import eazi.com.eazirentals.helper.ConstantStrings;
 import eazi.com.eazirentals.helper.Constants;
 import eazi.com.eazirentals.helper.CustomToast;
 import eazi.com.eazirentals.helper.DataBaseHelper;
+import eazi.com.eazirentals.helper.Loader;
 import eazi.com.eazirentals.helper.Notify;
 import eazi.com.eazirentals.helper.SharedPreference;
 import eazi.com.eazirentals.library.CustomViewPager;
+import eazi.com.eazirentals.models.BikeListResponse;
+import eazi.com.eazirentals.models.BranchListResponse;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
         AdapterView.OnItemSelectedListener,View.OnClickListener {
@@ -54,14 +69,21 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private int page = 0;
     private Runnable runnable;
     String type = "";
+    String branch_id = "";
     int pick_time_pos = 0;
     int drop_time_pos = 0;
+    int select_location_pos = 0;
     List<String> pickuptime = new ArrayList<>();
     List<String> dropoffptime = new ArrayList<>();
+    List<String> location = new ArrayList<>();
     private Button pick_up_date,drop_Off_Date;
-    private Spinner pickup_time,drop_time;
+    private Spinner pickup_time,drop_time,select_location;
     private DataBaseHelper db;
     private TextView cart_count;
+    private static DecimalFormat df = new DecimalFormat("0.00");
+    private ArrayAdapter pickup_timeaa;
+    private ArrayAdapter drop_timeaa;
+    private BranchListResponse data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,16 +94,18 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     private void initUI() {
+        callGetBranchList();
         pick_up_date = (Button)findViewById(R.id.pick_up_date);
         drop_Off_Date = (Button)findViewById(R.id.drop_Off_Date);
         pickup_time = (Spinner) findViewById(R.id.pickup_time);
+        select_location = (Spinner) findViewById(R.id.select_location);
         drop_time = (Spinner) findViewById(R.id.drop_time);
         RelativeLayout cart_button = (RelativeLayout) findViewById(R.id.cart_button);
         cart_count = (TextView) findViewById(R.id.cart_count);
         pickup_time.setOnItemSelectedListener(this);
+        select_location.setOnItemSelectedListener(this);
         drop_time.setOnItemSelectedListener(this);
         System.out.println("Home124 pick_time_pos getId initUI "+pickup_time.getId());
-
         handler = new Handler();
 
         final CustomViewPager viewPager = (CustomViewPager) findViewById(R.id.view_pager);
@@ -143,47 +167,170 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         cart_button.setOnClickListener(this);
 
         db = new DataBaseHelper(this);
-
         makeTimeList();
+        pickTime();
+
+    }
+
+    static Date toNearestWholeMinute(Date d,int add) {
+        final long ONE_MINUTE_IN_MILLIS = 60000;//millisecs
+
+        long curTimeInMs = d.getTime();
+        Date afterAddingMins = new Date(curTimeInMs + (add * ONE_MINUTE_IN_MILLIS));
+        return afterAddingMins;
+    }
+
+    private String secondsToString(int hr, int min) {
+        return String.format("%02d:%d", hr , min);
     }
 
 
-    public void makeTimeList() {
-        double i = 7.00;
-        int j =0;
-        while (i <= 12.00){
-            String pTime = String.format("%.2f", i) +" AM";
-            pickuptime.add(pTime.replaceAll("\\.",":"));
-            if(j % 2 == 0) {
-                i = i+0.30;
+
+    public String calculateStartTime() {
+        Date current_date = null;
+        try {
+            current_date = sdf.parse(pick_up_date.getText().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String day_of_week = new SimpleDateFormat("EE", Locale.ENGLISH).format(current_date.getTime());
+        Date now_date = new Date();
+        String str_now_date = sdf.format(now_date);
+        try {
+            now_date = sdf.parse(str_now_date);
+        } catch (ParseException e) {
+            System.out.println("toNearestWholeMinutecurrent_date " +
+                    " ParseException "+e.toString());
+            e.printStackTrace();
+        }
+        System.out.println("toNearestWholeMinutecurrent_date " +
+                " "+now_date.compareTo(current_date)+" now_date "+now_date+" current_date "+current_date);
+
+        if(current_date.compareTo(now_date) == 0) {
+            int minutes_to_add = 0;
+            if (myCalendar.getTime().getMinutes() > 30) {
+                minutes_to_add = 60 - myCalendar.getTime().getMinutes();
             } else {
-                i = i+0.70;
+                minutes_to_add = 30 - myCalendar.getTime().getMinutes();
             }
-            j = j + 1;
-        }
-        if(i> 12) {
-            String pTime = String.format("%.2f", 12.30) +" PM";
-            pickuptime.add(pTime.replaceAll("\\.",":"));
-            i = 1.00;
-           while (i < 10.00) {
-               pTime = String.format("%.2f",i) +" PM";
-               pickuptime.add(pTime.replaceAll("\\.",":"));
-               if (j % 2 != 0) {
-                   i = i + 0.30;
-               } else {
-                   i = i + 0.70;
-               }
-               j = j + 1;
+
+            Date toNearest = toNearestWholeMinute(myCalendar.getTime(), minutes_to_add);
+
+            int start_hr = Integer.parseInt(new SimpleDateFormat("HH", Locale.ENGLISH).format(toNearest));
+            int start_min = Integer.parseInt(new SimpleDateFormat("mm", Locale.ENGLISH).format(toNearest));
+            String am_pm = new SimpleDateFormat("aa", Locale.ENGLISH).format(toNearest);
+            String start_time = secondsToString(start_hr, start_min);
+            System.out.println("toNearestWholeMinute toNearest " + toNearest + " start_time " + start_time +
+                    " minutes_to_add " + minutes_to_add + " day_of_week " +
+                    " " + day_of_week + " current_date " + current_date);
+
+            if (am_pm.equalsIgnoreCase("pm")) {
+                if (start_hr > 21) {
+                    Calendar c = Calendar.getInstance();
+                    c.setTime(current_date); // Now use today date.
+                    c.add(Calendar.DATE, 1); // Adding 5 days
+                    String output = sdf.format(c.getTime());
+                    pick_up_date.setText(output);
+                    drop_Off_Date.setText(output);
+                    System.out.println("toNearestWholeMinuteday_of_week "+day_of_week+" "+day_of_week.contains("Sat"));
+                    if (day_of_week.contains("Sat") || day_of_week.contains("Sun")) {
+                        return "8:30";
+                    } else {
+                        System.out.println("toNearestWholeMinuteday_of_week 7:30 one");
+
+                        return "7:30";
+                    }
+                } else {
+                    return start_time;
+                }
+            } else {
+                if (day_of_week.contains("Sat") || day_of_week.contains("Sun")) {
+                    if (start_hr < 9.00) {
+                        Calendar c = Calendar.getInstance();
+                        c.setTime(current_date); // Now use today date.
+                        c.add(Calendar.DATE, 1); // Adding 5 days
+                        String output = sdf.format(c.getTime());
+                        pick_up_date.setText(output);
+                        drop_Off_Date.setText(output);
+                        return "8:30";
+                    } else {
+                        return start_time;
+                    }
+                } else {
+                    if (start_hr < 8.00) {
+                        Calendar c = Calendar.getInstance();
+                        c.setTime(current_date); // Now use today date.
+                        c.add(Calendar.DATE, 1); // Adding 5 days
+                        String output = sdf.format(c.getTime());
+                        pick_up_date.setText(output);
+                        drop_Off_Date.setText(output);
+                        return "7:30";
+                    } else {
+                        return start_time;
+                    }
+                }
+            }
+        } else {
+
+            if(type.equals("pickUp")) {
+                drop_Off_Date.setText(pick_up_date.getText().toString());
+            }
+            if (day_of_week.contains("Sat") || day_of_week.contains("Sun")) {
+                return "8:30";
+            } else {
+                return "7:30";
             }
         }
-        reverseList();
-        pickTime();
+    }
 
+    public void makeTimeList() {
+        pickuptime.clear();
+        try {
+            String date_add = calculateStartTime();
+            System.out.println("toNearestWholeMinutemakeTimeList date_add "+date_add);
 
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+            Date date = null;
+            try {
+                date = formatter.parse(date_add);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Double i = Double.parseDouble(new SimpleDateFormat("HH.mm", Locale.ENGLISH).format(date));
+            System.out.println("toNearestWholeMinutemakeTimeList "+i);
+            int j = 0;
+            while (i <= 21.30 && i >= 7.30) {
+
+                String ss = new SimpleDateFormat("hh:mm aa", Locale.ENGLISH).format(date);
+
+                pickuptime.add(ss);
+                Date new_date = toNearestWholeMinute(date, 30);
+                int start_hr = Integer.parseInt(new SimpleDateFormat("HH", Locale.ENGLISH).format(new_date));
+                int start_min = Integer.parseInt(new SimpleDateFormat("mm", Locale.ENGLISH).format(new_date));
+                date_add = secondsToString(start_hr, start_min);
+                try {
+                    date = formatter.parse(date_add);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                i = Double.parseDouble(new SimpleDateFormat("HH.mm", Locale.ENGLISH).format(date));
+                System.out.println("toNearestWholeMinute intValue new_date " + new_date + " date_add "
+                        + date_add + " date " + date + " i " + i);
+
+                j = j + 1;
+            }
+            pickup_timeaa.notifyDataSetChanged();
+            reverseList(pickuptime.get(pick_time_pos),true);
+
+        } catch (Exception e){
+            System.out.println("toNearestWholeMinutemakeTimeList Exception "+e.toString() +" "+pickuptime.size());
+
+        }
     }
 
 
     Calendar myCalendar = Calendar.getInstance();
+
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
         @Override
@@ -200,8 +347,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     String myFormat = "dd/MM/yy"; //In which you need put here
     String myFormat2 = "hh:mm a"; //In which you need put here
+    String myFormat3 = "dd/MM/yy hh:mm a"; //In which you need put here
     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
     SimpleDateFormat sdf2 = new SimpleDateFormat(myFormat2, Locale.US);
+    SimpleDateFormat sdf3 = new SimpleDateFormat(myFormat3, Locale.US);
 
     private void updateLabel() {
 
@@ -210,6 +359,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         } else {
             drop_Off_Date.setText(sdf.format(myCalendar.getTime()));
         }
+        pick_time_pos =0;
+        drop_time_pos =0;
+
+        makeTimeList();
+        pickup_time.setSelection(pick_time_pos);
+        drop_time.setSelection(drop_time_pos);
     }
 
     public void pickupDate(View view){
@@ -220,24 +375,100 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     public void pickTime(){
-        ArrayAdapter pickup_timeaa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,pickuptime);
+        pickup_timeaa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,pickuptime);
         pickup_timeaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         pickup_time.setAdapter(pickup_timeaa);
 
-        ArrayAdapter drop_timeaa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,dropoffptime);
+        drop_timeaa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,dropoffptime);
         drop_timeaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         drop_time.setAdapter(drop_timeaa);
 
     }
 
-    public  void reverseList() {
-        int size = pickuptime.size()-1;
+    public void selectLocation(){
+        ArrayAdapter selectLocation = new ArrayAdapter(this,android.R.layout.simple_spinner_item,location);
+        selectLocation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        select_location.setAdapter(selectLocation);
 
-        for(int i=size;i>=0;i--){
-            dropoffptime.add(pickuptime.get(i));
+    }
+
+
+    public  void reverseList(String _add,boolean isAdd) {
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm aa");
+        SimpleDateFormat sd = new SimpleDateFormat("HH:mm");
+        dropoffptime.clear();
+        Date _date = null;
+        try {
+            _date = sdf.parse(_add);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(_date); // Now use today date.
+        if(isAdd) {
+            c.add(Calendar.HOUR, 1); // Adding 5 days
+        }
+        String output = sd.format(c.getTime());
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+            Date date = null;
+            try {
+                date = formatter.parse(output);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Double i = Double.parseDouble(new SimpleDateFormat("HH.mm", Locale.ENGLISH).format(date));
+            System.out.println("toNearestWholeMinutemakeTimeList reverseList "+i);
+            if(i > 21.30) {
+                setDropDate();
+                reverseList("7:30 AM",false);
+            }
+            int j = 0;
+            while (i <= 21.30 && i >= 7.30) {
+
+                String ss = new SimpleDateFormat("hh:mm aa", Locale.ENGLISH).format(date);
+
+                dropoffptime.add(ss);
+                Date new_date = toNearestWholeMinute(date, 30);
+                int start_hr = Integer.parseInt(new SimpleDateFormat("HH", Locale.ENGLISH).format(new_date));
+                int start_min = Integer.parseInt(new SimpleDateFormat("mm", Locale.ENGLISH).format(new_date));
+                output = secondsToString(start_hr, start_min);
+                try {
+                    date = formatter.parse(output);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                i = Double.parseDouble(new SimpleDateFormat("HH.mm", Locale.ENGLISH).format(date));
+                System.out.println("toNearestWholeMinute intValue new_date " + new_date + " date_add "
+                        + output + " date " + date + " i " + i);
+
+                j = j + 1;
+            }
+
+            drop_timeaa.notifyDataSetChanged();
+        } catch (Exception e){
+            System.out.println("toNearestWholeMinutemakeTimeList Exception reverseList "+e.toString());
+
+        }
+
+    }
+
+    public void setDropDate(){
+        Date current_date = null;
+        try {
+            current_date = sdf.parse(pick_up_date.getText().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar c = Calendar.getInstance();
+        c.setTime(current_date); // Now use today date.
+        c.add(Calendar.DATE, 1); // Adding 5 days
+        String output = sdf.format(c.getTime());
+        drop_Off_Date.setText(output);
     }
     public boolean validateDate() {
 
@@ -282,6 +513,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             i.putExtra(Constants.DROP_DATE, drop_Off_Date.getText().toString());
             i.putExtra(Constants.PICKUP_TIME, pickuptime.get(pick_time_pos));
             i.putExtra(Constants.DROP_TIME, dropoffptime.get(drop_time_pos));
+            i.putExtra(Constants.PICKUP_LOCATION, data.getBike_list().get(select_location_pos).getId());
             startActivity(i);
         }
     }
@@ -367,12 +599,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         if(parent.getId() == R.id.pickup_time) {
             pick_time_pos = position;
             System.out.println("Home124 pick_time_pos");
+            makeTimeList();
+        } else if(parent.getId() == R.id.select_location) {
+            select_location_pos = position;
+            System.out.println("Home124 pick_time_pos");
 
         } else {
             System.out.println("Home124 drop_time_pos");
 
             drop_time_pos = position;
         }
+
     }
 
     @Override
@@ -448,4 +685,49 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             }
         },"OK","Cancel");
     }
+
+    public void callGetBranchList() {
+        try {
+            final List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+            params.add(new BasicNameValuePair("user_id", SharedPreference.getString(Home.this, Constants.KEY_USER_ID)));
+            params.add(new BasicNameValuePair("access_token",SharedPreference.getString(Home.this,Constants.KEY_ACCESS_TOKEN)));
+            params.add(new BasicNameValuePair("city_id",SharedPreference.getString(Home.this,Constants.KEY_CITY_ID)));
+
+            Loader.show(this);
+
+            APICalls.invokeAPIEx(this,"Post",APICalls.SERVICE_URL+APICalls.BRANCH,params,new Handler(new Handler.Callback() {
+                @Override
+                public boolean handleMessage(Message message) {
+                    Loader.hide();
+                    try {
+                        if (message != null && message.obj != null) {
+                            String result = (String) message.obj;
+                            data = new Gson().fromJson(result, BranchListResponse.class);
+                            System.out.println("callGetBranchList callAPI Response " + result + " status " + data.getStatus());
+                            if (data.getStatus() != null && data.getStatus().equalsIgnoreCase("success")) {
+                                for (int i = 0; i < data.getBike_list().size(); i++) {
+                                    location.add(data.getBike_list().get(i).getName());
+                                }
+                                System.out.println("callGetBranchList callAPI Response " + result + " status " + data.getStatus());
+
+                                selectLocation();
+                            }
+                        } else {
+                            new CustomToast().Show_Toast(Home.this, ConstantStrings.common_msg, R.color.light_red2);
+
+                        }
+                    } catch (Exception e){
+                        System.out.println("Home callAPI Response Exception " + e.toString());
+
+                    }
+                    return false;
+                }
+            }));
+        } catch (Exception e){
+            System.out.println("Home callAPI Exception "+e.toString());
+        }
+
+    }
+
 }

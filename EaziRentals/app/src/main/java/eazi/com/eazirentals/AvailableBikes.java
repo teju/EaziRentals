@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -48,6 +49,7 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
     private BikeListResponse data;
     private TextView dropoff_up_time,pick_up_time;
     private DataBaseHelper db;
+    private TextView cart_count;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -57,8 +59,24 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
         initUI();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(db.getAllContacts("").size() == 0) {
+            cart_count.setVisibility(View.GONE);
+        } else {
+            cart_count.setVisibility(View.VISIBLE);
+            cart_count.setText(String.valueOf(db.getAllContacts("").size()));
+        }
+    }
+
     private void initUI() {
         db = new DataBaseHelper(this);
+        RelativeLayout cart_button = (RelativeLayout) findViewById(R.id.cart_button);
+        cart_button.setVisibility(View.VISIBLE);
+        cart_count = (TextView) findViewById(R.id.cart_count);
+        cart_button.setOnClickListener(this);
+
         ImageView back = (ImageView) findViewById(R.id.back);
         back.setOnClickListener(this);
         listView = (LinearLayout)findViewById(R.id.bike_list);
@@ -138,6 +156,7 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
             params.add(new BasicNameValuePair("dropoff_date", Helper.convertDate(getIntent().getStringExtra(Constants.DROP_DATE),Constants.format_3,Constants.format_1)));
             params.add(new BasicNameValuePair("dropoff_time",Helper.convertDate(getIntent().getStringExtra(Constants.DROP_TIME),Constants.format_4,Constants.format_5)));
             params.add(new BasicNameValuePair("bike_name",getIntent().getStringExtra(Constants.BIKE_NAME)));
+            params.add(new BasicNameValuePair("branch_id",getIntent().getStringExtra(Constants.PICKUP_LOCATION)));
 
             Loader.show(this);
 
@@ -183,7 +202,15 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.book_now) {
+        if(v.getId() == R.id.cart_button) {
+            if(db.getAllContacts("").size() == 0) {
+                new CustomToast().Show_Toast(AvailableBikes.this, ConstantStrings.noitems_in_cart, R.color.light_red2);
+            } else {
+                Intent i =new Intent(AvailableBikes.this,Cart.class);
+                startActivity(i);
+            }
+
+        } else if(v.getId() == R.id.book_now) {
             Intent i =new Intent(AvailableBikes.this,Cart.class);
             startActivity(i);
         } else if(v.getId() == R.id.add_bikes_button) {
@@ -195,6 +222,12 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
             db.addToCart(db,bikeList.getName(),bikeList.getImage(),bikeList.getId(),bikeList.getPrice()
                     ,bikeList.getBranch(),bikeList.getFrom(),bikeList.getTo(),
                     SharedPreference.getString(AvailableBikes.this, Constants.KEY_USER_ID));
+            if(db.getAllContacts("").size() == 0) {
+                cart_count.setVisibility(View.GONE);
+            } else {
+                cart_count.setVisibility(View.VISIBLE);
+                cart_count.setText(String.valueOf(db.getAllContacts("").size()));
+            }
             setListView();
         } else if(v.getId() == R.id.back) {
             super.onBackPressed();

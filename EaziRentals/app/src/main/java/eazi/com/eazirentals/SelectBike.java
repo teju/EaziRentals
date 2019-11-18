@@ -1,5 +1,6 @@
 package eazi.com.eazirentals;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -16,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -31,6 +33,7 @@ import eazi.com.eazirentals.api.APICalls;
 import eazi.com.eazirentals.helper.ConstantStrings;
 import eazi.com.eazirentals.helper.Constants;
 import eazi.com.eazirentals.helper.CustomToast;
+import eazi.com.eazirentals.helper.DataBaseHelper;
 import eazi.com.eazirentals.helper.Helper;
 import eazi.com.eazirentals.helper.Loader;
 import eazi.com.eazirentals.helper.SharedPreference;
@@ -43,6 +46,8 @@ public class SelectBike extends AppCompatActivity implements View.OnClickListene
     Integer selected_position = -1;
     private TextView dropoff_up_time,pick_up_time;
     private ImageView back;
+    private DataBaseHelper db;
+    private TextView cart_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +56,26 @@ public class SelectBike extends AppCompatActivity implements View.OnClickListene
         initUI();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(db.getAllContacts("").size() == 0) {
+            cart_count.setVisibility(View.GONE);
+        } else {
+            cart_count.setVisibility(View.VISIBLE);
+            cart_count.setText(String.valueOf(db.getAllContacts("").size()));
+        }
+    }
+
     private void initUI() {
+        db = new DataBaseHelper(this);
+
         gridview = (GridView)findViewById(R.id.gridview);
+        RelativeLayout cart_button = (RelativeLayout) findViewById(R.id.cart_button);
+        cart_button.setVisibility(View.VISIBLE);
+        cart_button.setOnClickListener(this);
+        cart_count = (TextView) findViewById(R.id.cart_count);
+
         back = (ImageView)findViewById(R.id.back);
         back.setOnClickListener(this);
         dropoff_up_time = (TextView)findViewById(R.id.dropoff_up_time);
@@ -75,13 +98,25 @@ public class SelectBike extends AppCompatActivity implements View.OnClickListene
             i.putExtra(Constants.PICKUP_DATE,getIntent().getStringExtra(Constants.PICKUP_DATE));
             i.putExtra(Constants.DROP_TIME,getIntent().getStringExtra(Constants.DROP_TIME));
             i.putExtra(Constants.DROP_DATE,getIntent().getStringExtra(Constants.DROP_DATE));
+            i.putExtra(Constants.PICKUP_LOCATION,getIntent().getStringExtra(Constants.PICKUP_LOCATION));
             startActivity(i);
         }
     }
 
     @Override
     public void onClick(View v) {
-        super.onBackPressed();
+        if(v.getId() == R.id.cart_button) {
+            if(db.getAllContacts("").size() == 0) {
+                new CustomToast().Show_Toast(SelectBike.this, ConstantStrings.noitems_in_cart, R.color.light_red2);
+            } else {
+                Intent i =new Intent(SelectBike.this,Cart.class);
+                startActivity(i);
+            }
+
+        } else {
+            super.onBackPressed();
+
+        }
     }
 
 
@@ -119,7 +154,8 @@ public class SelectBike extends AppCompatActivity implements View.OnClickListene
             View view = LayoutInflater.from(
                     mContext).inflate(R.layout.select_bike_item, parent, false);
             ImageView bike_image = (ImageView)view.findViewById(R.id.bike_image);
-            CheckBox select_bike_checkbox = (CheckBox)view.findViewById(R.id.select_bike_checkbox);
+            RelativeLayout container = (RelativeLayout)view.findViewById(R.id.container);
+            final CheckBox select_bike_checkbox = (CheckBox)view.findViewById(R.id.select_bike_checkbox);
             select_bike_checkbox.setTag(position);
             select_bike_checkbox.setChecked(position==selected_position);
 
@@ -127,8 +163,25 @@ public class SelectBike extends AppCompatActivity implements View.OnClickListene
             Glide.with(mContext).load(data.getBike_list().get(position).getImage())
                     .into(bike_image);
             bike_image.setTag(position);
+            container.setTag(position);
             bike_name.setText(data.getBike_list().get(position).getName());
             select_bike_checkbox.setOnCheckedChangeListener(this);
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean isChecked = select_bike_checkbox.isChecked();
+                    if(isChecked)
+                    {
+                        select_bike_checkbox.setChecked(false);
+                        selected_position =  -1;
+                    }
+                    else{
+                        select_bike_checkbox.setChecked(true);
+                        selected_position = (int)v.getTag();
+                    }
+                    notifyDataSetChanged();
+                }
+            });
             return view;
         }
 

@@ -149,7 +149,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 SharedPreference.setBool(LoginActivity.this,Constants.KEY_IS_LOGGEDIN,true);
                                 SharedPreference.setString(LoginActivity.this, Constants.KEY_USER_ID,data.getUser_details().getUser_id());
                                 SharedPreference.setString(LoginActivity.this, Constants.KEY_ACCESS_TOKEN,data.getUser_details().getAccess_token());
-                                Intent i = new Intent(LoginActivity.this,Home.class);
+                                Intent i = new Intent(LoginActivity.this,SelectCity.class);
                                 startActivity(i);
                                 finish();
                             } else {
