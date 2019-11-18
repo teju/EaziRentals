@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical"
+        android:layout_marginRight="20dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@drawable/bike1"
+            android:visibility="gone"
+            android:id="@+id/bike_img"
+            android:layout_height="100dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bike_name"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textAlignment="textStart"
+                android:text="APACHE RTR 160"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/location"
+                android:visibility="gone"
+                android:textAlignment="textStart"
+                android:drawableLeft="@drawable/address_marker"
+                android:textSize="15dp"
+                android:layout_marginTop="10dp"
+                android:drawableTint="@color/green"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:textColor="@color/dark1_gray"
+                android:textStyle="bold"
+                android:id="@+id/km"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:textColor="@color/dark1_gray"
+                android:textStyle="bold"
+                android:id="@+id/pickup_date"
+                android:visibility="visible"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:textColor="@color/dark1_gray"
+                android:textStyle="bold"
+                android:visibility="visible"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/dropup_date"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

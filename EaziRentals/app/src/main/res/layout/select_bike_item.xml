@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ImageView
-        android:layout_width="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <eazi.com.eazirentals.helper.SquareImageView
+        android:layout_width="130dp"
         android:id="@+id/bike_image"
+        android:layout_height="130dp" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:id="@+id/select_bike_checkbox"
         android:layout_height="wrap_content" />
-</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/bike_image"
+        android:id="@+id/bike_name"
+        android:textColor="@color/black"/>
+</RelativeLayout>

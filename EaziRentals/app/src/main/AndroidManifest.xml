@@ -2,15 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eazi.com.eazirentals">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".LaunchScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,16 +21,27 @@
             </intent-filter>
         </activity>
         <activity android:name=".Register" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".Home" />
         <activity android:name=".SelectBike" />
         <activity android:name=".BookingHistory" />
-        <activity android:name=".Tariff" />
+        <activity
+            android:name=".Tariff"
+            android:screenOrientation="landscape" />
         <activity android:name=".ReferAndEarn" />
         <activity android:name=".Offers" />
         <activity android:name=".AboutUs" />
         <activity android:name=".ContactUs" />
         <activity android:name=".Faq" />
-        <activity android:name=".Cart"></activity>
+        <activity android:name=".Cart" />
+        <activity android:name=".Register2" />
+        <activity android:name=".AvailableBikes" />
+        <activity android:name=".CartDetails" />
+        <activity android:name=".PaymentSuccess"></activity>
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_live_nqrFuyeU67diR7" />
+
     </application>
 
 </manifest>

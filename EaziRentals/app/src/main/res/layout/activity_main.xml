@@ -1,67 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:padding="5dp"
-    android:background="@color/yellow"
-    android:layout_height="match_parent">
-    <LinearLayout
+    android:background="@color/background"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:background="@color/yellow"
-        android:layout_height="match_parent">
-        <ImageView
+        android:background="@color/white"
+        android:layout_margin="8dp"
+        android:layout_centerVertical="true"
+            android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:id="@+id/logo"
-            android:src="@drawable/logo"
-            android:layout_marginTop="100dp"
-            android:layout_gravity="center_horizontal"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign in to your Account"
-            android:textStyle="bold|italic"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:textAllCaps="true"
-            android:textSize="14dp"
-            android:textColor="@color/black" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/phone"
-            android:hint="Mobile Number"
-            android:inputType="number"
-            android:drawablePadding="10dp"
-            android:textSize="16dp"
-            android:background="@android:drawable/editbox_background_normal"
-            android:gravity="center_vertical"
-            android:drawableLeft="@drawable/cellphone"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"
-            android:layout_marginTop="20dp"
-            android:padding="15dp" />
-        <Button
-            android:layout_width="100dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="35dp"
-            android:id="@+id/login_button"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/white"
-            android:background="@drawable/buttob_bg"
-            android:text="LOGIN"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="New here? Sign Up"
-            android:padding="15dp"
-            android:textSize="14dp"
-            android:textStyle="italic"
-            android:id="@+id/sign_up"
-            android:textColor="@color/white"/>
-    </LinearLayout>
-</LinearLayout>
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:id="@+id/logo"
+                android:src="@drawable/logo"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:text="Sign in to your Account"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="240dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:drawable/editbox_background_normal"
+                android:drawableLeft="@drawable/cellphone"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:hint="Mobile Number"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:inputType="number"
+                android:padding="15dp"
+                android:textColorHint="@color/dark_gray"
+                android:textSize="18dp" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="35dp"
+                android:textSize="16dp"
+                android:id="@+id/login_button"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/white"
+                android:background="@drawable/buttob_bg"
+                android:text="LOGIN"/>
+
+            <TextView
+                android:id="@+id/sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="15dp"
+                android:text="New here? Register"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="italic" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
