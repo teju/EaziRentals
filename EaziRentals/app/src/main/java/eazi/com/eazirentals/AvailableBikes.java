@@ -56,12 +56,13 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.available_bikes);
-        initUI();
     }
+
 
     @Override
     protected void onResume() {
         super.onResume();
+        initUI();
         if(db.getAllContacts("").size() == 0) {
             cart_count.setVisibility(View.GONE);
         } else {

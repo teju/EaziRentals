@@ -71,10 +71,16 @@ public class BookingHistory extends AppCompatActivity {
             TextView pickup_date = (TextView)child.findViewById(R.id.pickup_date);
             TextView dropup_date = (TextView)child.findViewById(R.id.dropup_date);
             TextView km = (TextView)child.findViewById(R.id.km);
-            TextView location = (TextView)child.findViewById(R.id.location);
+            TextView status = (TextView)child.findViewById(R.id.status);
 
             bike_name.setText(orderList.getRider_name());
             dropup_date.setText(orderList.getDropup_date());
+            status.setText("Status: "+orderList.getStatus());
+            if(orderList.getStatus().equalsIgnoreCase("payment failed")) {
+                status.setTextColor(getResources().getColor(R.color.orange));
+            } else {
+                status.setTextColor(getResources().getColor(R.color.green));
+            }
             km.setText("Booking Date: "+Helper.convertDate(orderList.getBooking_date(),Constants.format_1,Constants.format_9));
             pickup_date.setText("Pick UP Date: "+Helper.convertDate(orderList.getPickup_date(),Constants.format_1,Constants.format_9));
             dropup_date.setText("Drop Date: "+Helper.convertDate(orderList.getDropup_date(),Constants.format_1,Constants.format_9));

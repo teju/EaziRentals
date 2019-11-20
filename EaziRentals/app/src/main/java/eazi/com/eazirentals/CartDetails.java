@@ -94,8 +94,7 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.back) {
-            Intent i =new Intent(CartDetails.this,Cart.class);
-            startActivity(i);
+            super.onBackPressed();
         } else  if(v.getId() == R.id.edit) {
             Intent i = new Intent(CartDetails.this,Register.class);
             i.putExtra(Constants.ISRegister,false);
