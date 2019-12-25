@@ -55,7 +55,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         password = (EditText)findViewById(R.id.password);
         rpassword = (EditText)findViewById(R.id.rpassword);
         isRegister = getIntent().getBooleanExtra(Constants.ISRegister,true);
-        ISFromCart = getIntent().getBooleanExtra(Constants.ISFromCart,true);
+        ISFromCart = getIntent().getBooleanExtra(Constants.ISFromCart,false);
         if(isRegister) {
             title.setVisibility(View.VISIBLE);
             phone.setVisibility(View.VISIBLE);

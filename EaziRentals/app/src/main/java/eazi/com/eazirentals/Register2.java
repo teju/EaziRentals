@@ -209,7 +209,8 @@ public class Register2 extends AppCompatActivity implements View.OnClickListener
                         if (message != null && message.obj != null) {
                             String result = (String) message.obj;
                             GeneralResult data = new Gson().fromJson(result, GeneralResult.class);
-                            System.out.println("Register2 callAPI Response " + result + " status " + data.getStatus());
+                            System.out.println("Register2callAPIResponse "
+                                    + result + " status " + data.getStatus()+" isFromCart "+isFromCart);
 
                             if (data.getStatus() != null && data.getStatus().equalsIgnoreCase("true") ||
                                     data.getStatus() != null && data.getStatus().equalsIgnoreCase("success") ) {
@@ -218,6 +219,7 @@ public class Register2 extends AppCompatActivity implements View.OnClickListener
                                     Intent i = new Intent(Register2.this, LoginActivity.class);
                                     startActivity(i);
                                 } else {
+                                    System.out.println("Register2callAPIResponseisFromCart "+isFromCart);
                                     new CustomToast().Show_Toast(Register2.this, data.getMessage(), R.color.green);
                                     if(!isFromCart) {
                                         Intent i = new Intent(Register2.this, SelectCity.class);

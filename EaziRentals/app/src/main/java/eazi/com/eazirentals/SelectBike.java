@@ -88,9 +88,9 @@ public class SelectBike extends AppCompatActivity implements View.OnClickListene
     }
 
 
-    public void selectNow(View v) {
+    public void selectNow() {
         if(selected_position == -1) {
-            new CustomToast().Show_Toast(this,ConstantStrings.select_one_bike,R.color.light_red2);
+            //new CustomToast().Show_Toast(this,ConstantStrings.select_one_bike,R.color.light_red2);
         } else {
             Intent i = new Intent(SelectBike.this, AvailableBikes.class);
             i.putExtra(Constants.BIKE_NAME,data.getBike_list().get(selected_position).getName());
@@ -180,6 +180,7 @@ public class SelectBike extends AppCompatActivity implements View.OnClickListene
                         selected_position = (int)v.getTag();
                     }
                     notifyDataSetChanged();
+                    selectNow();
                 }
             });
             return view;

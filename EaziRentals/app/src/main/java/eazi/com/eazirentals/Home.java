@@ -152,6 +152,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
+        TextView profile_name = (TextView)header.findViewById(R.id.profile_name);
+        profile_name.setText( SharedPreference.getString(Home.this, Constants.KEY_USER_NAME));
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

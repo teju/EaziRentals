@@ -24,6 +24,7 @@ public class PaymentSuccess extends AppCompatActivity implements View.OnClickLis
         ImageView status_img = (ImageView) findViewById(R.id.status_img);
         Button done = (Button) findViewById(R.id.done);
         TextView total = (TextView) findViewById(R.id.total);
+        TextView tvTotal = (TextView) findViewById(R.id.tvTotal);
         TextView status_result = (TextView) findViewById(R.id.status_result);
         TextView booking_id = (TextView) findViewById(R.id.booking_id);
         TextView status = (TextView) findViewById(R.id.status);
@@ -31,6 +32,8 @@ public class PaymentSuccess extends AppCompatActivity implements View.OnClickLis
         booking_id.setText(getIntent().getStringExtra(Constants.PAYMENTID));
         status.setText(getIntent().getStringExtra(Constants.STATUS));
         if(status.getText().toString().contains("fail")) {
+            total.setVisibility(View.GONE);
+            tvTotal.setVisibility(View.GONE);
             status_result.setText("Sorrry!!\n your booking is not completed");
             status_img.setImageDrawable(getResources().getDrawable(R.drawable.close_circle));
         }

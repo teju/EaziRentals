@@ -43,7 +43,8 @@
             android:name="com.razorpay.ApiKey"
             android:value="rzp_live_nqrFuyeU67diR7" />
 
-        <activity android:name=".SelectCity"></activity>
+        <activity android:name=".SelectCity" />
+        <activity android:name=".TermsConditions"></activity>
     </application>
 
 </manifest>

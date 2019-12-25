@@ -40,6 +40,7 @@ public class BookingHistory extends AppCompatActivity {
 
     private LinearLayout cartList;
     private OrderHistory data;
+    private TextView no_list;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -48,6 +49,7 @@ public class BookingHistory extends AppCompatActivity {
         setContentView(R.layout.activity_booking_history);
         cartList = (LinearLayout)findViewById(R.id.cartList);
         ImageView back = (ImageView) findViewById(R.id.back);
+        no_list = (TextView) findViewById(R.id.no_list);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,7 +62,11 @@ public class BookingHistory extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void setList() {
-
+        if(data.getOrder_list().getOrder_list().size() == 0){
+            no_list.setVisibility(View.VISIBLE);
+        } else {
+            no_list.setVisibility(View.GONE);
+        }
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         cartList.removeAllViews();
         for (int i = 0; i < data.getOrder_list().getOrder_list().size() ; i++) {

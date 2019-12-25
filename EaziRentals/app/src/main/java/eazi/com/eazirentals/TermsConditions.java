@@ -24,20 +24,22 @@ import eazi.com.eazirentals.helper.CustomToast;
 import eazi.com.eazirentals.helper.Loader;
 import eazi.com.eazirentals.helper.SharedPreference;
 import eazi.com.eazirentals.models.CMSResponse;
+import eazi.com.eazirentals.models.CityListResponse;
 
-public class AboutUs extends AppCompatActivity {
+public class TermsConditions extends AppCompatActivity {
+
     private CMSResponse data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_us);
+        setContentView(R.layout.activity_terms_conditions);
         GetCMS();
         ImageView back = (ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AboutUs.super.onBackPressed();
+                TermsConditions.super.onBackPressed();
             }
         });
     }
@@ -46,9 +48,9 @@ public class AboutUs extends AppCompatActivity {
         try {
             final List<NameValuePair> params = new ArrayList<NameValuePair>();
 
-            params.add(new BasicNameValuePair("user_id", SharedPreference.getString(AboutUs.this, Constants.KEY_USER_ID)));
-            params.add(new BasicNameValuePair("access_token",SharedPreference.getString(AboutUs.this,Constants.KEY_ACCESS_TOKEN)));
-            params.add(new BasicNameValuePair("type","about_us"));
+            params.add(new BasicNameValuePair("user_id", SharedPreference.getString(TermsConditions.this, Constants.KEY_USER_ID)));
+            params.add(new BasicNameValuePair("access_token",SharedPreference.getString(TermsConditions.this,Constants.KEY_ACCESS_TOKEN)));
+            params.add(new BasicNameValuePair("type","terms_condition"));
 
             Loader.show(this);
 
@@ -64,11 +66,13 @@ public class AboutUs extends AppCompatActivity {
 
                             if (data.getStatus() != null && data.getStatus().equalsIgnoreCase("success")) {
                                 TextView terms_conditions = (TextView) findViewById(R.id.terms_conditions);
-                                terms_conditions.setText(Html.fromHtml(data.getAbout_us()));
+                                terms_conditions.setText(Html.fromHtml(data.getTerms_condition()));
+
                             }
 
                         } else {
-                            new CustomToast().Show_Toast(AboutUs.this, ConstantStrings.common_msg, R.color.light_red2);
+                            new CustomToast().Show_Toast(TermsConditions.this, ConstantStrings.common_msg, R.color.light_red2);
+
                         }
                     } catch (Exception e){
                         System.out.println("SelectBike callAPI Response Exception " + e.toString());

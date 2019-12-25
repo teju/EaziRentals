@@ -42,7 +42,7 @@ import eazi.com.eazirentals.models.VerifyOtpResult;
 public class CartDetails extends AppCompatActivity implements View.OnClickListener,PaymentResultListener {
     private DataBaseHelper db;
     private VerifyOtpResult data;
-    private TextView name,email_id,mobile_number,address,city,state,dl,sub_total,discount,gst,total;
+    private TextView name,email_id,mobile_number,address,city,state,dl,sub_total,discount,gst,total,terms;
     private Button edit,continue_to_pay,view_maps;
     private CheckBox agree;
     private double subtotal = 0;
@@ -61,6 +61,7 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
         db = new DataBaseHelper(this);
         ImageView back = (ImageView) findViewById(R.id.back);
         name = (TextView) findViewById(R.id.name);
+        terms = (TextView) findViewById(R.id.terms);
         email_id = (TextView) findViewById(R.id.email_id);
         mobile_number = (TextView) findViewById(R.id.mobile_number);
         address = (TextView) findViewById(R.id.address);
@@ -79,6 +80,7 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
         edit.setOnClickListener(this);
         continue_to_pay.setOnClickListener(this);
         view_maps.setOnClickListener(this);
+        terms.setOnClickListener(this);
         back.setOnClickListener(this);
         callGetUSerprofileAPI();
     }
@@ -106,6 +108,10 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
 
             Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                     Uri.parse(map));
+            startActivity(intent);
+        } else  if(v.getId() == R.id.terms) {
+
+            Intent intent = new Intent(this,TermsConditions.class);
             startActivity(intent);
         } else  if(v.getId() == R.id.continue_to_pay) {
             if(!agree.isChecked()){
@@ -299,13 +305,16 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
                             PaymentConfirmation generalResult = new Gson().fromJson(result, PaymentConfirmation.class);
                             System.out.println("CartDetails2 callAPI Response " + result + " status " + data.getStatus());
 
-                            if (generalResult.getPayment_info().getStatus() != null && generalResult.getPayment_info().getStatus().equalsIgnoreCase("success")) {
+                            if (generalResult.getPayment_info().getStatus() != null ) {
+                                if(!status.equals("fail")) {
+                                    db.deleteFromCart("");
+                                }
                                 Intent intent = new Intent(CartDetails.this,PaymentSuccess.class);
                                 intent.putExtra(Constants.TOTAL,total.getText().toString());
                                 intent.putExtra(Constants.PAYMENTID,razorpay_order_id);
                                 intent.putExtra(Constants.STATUS,status);
                                 startActivity(intent);
-                                db.deleteFromCart("");
+
                             } else {
                                 if (generalResult.getPayment_info().getMessage() != null) {
                                     new CustomToast().Show_Toast(CartDetails.this, generalResult.getPayment_info().getMessage(), R.color.light_red2);

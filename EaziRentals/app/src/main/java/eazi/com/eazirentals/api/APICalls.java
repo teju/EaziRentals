@@ -42,6 +42,7 @@ public class APICalls {
     public static final String REQUEST = "booking.php/request";
     public static final String BRANCH = "booking.php/branch";
     public static final String CITY = "booking.php/city";
+    public static final String CMS = "booking.php/cms";
     public static final String BIKELIST = "booking.php/bike-list";
     public static final String APPLY_COUPON = "booking.php/apply-booking-coupon";
     public static final String PAYMENT_CONFIRMATION = "booking.php/payment-confirmation";
