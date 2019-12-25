@@ -371,9 +371,35 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     public void pickupDate(View view){
         type = "pickUp";
-        new DatePickerDialog(Home.this, date, myCalendar
+        DatePickerDialog datePickerDialog = new DatePickerDialog(Home.this, date, myCalendar
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                myCalendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+        datePickerDialog.show();
+    }
+
+    public void dropOffDate(View view){
+        type = "drop";
+        DatePickerDialog datePickerDialog = new DatePickerDialog(Home.this, date, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH));
+        Date d =convertToDate(pick_up_date.getText().toString());
+        System.out.println("dropOffDate "+convertToDate(pick_up_date.getText().toString()));
+        datePickerDialog.getDatePicker().setMinDate(d.getTime());
+        datePickerDialog.show();
+
+    }
+
+    public Date convertToDate(String dtStart) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
+        try {
+            Date date = format.parse(dtStart);
+            System.out.println(date);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void pickTime(){
@@ -472,6 +498,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         String output = sdf.format(c.getTime());
         drop_Off_Date.setText(output);
     }
+
     public boolean validateDate() {
 
         if(!CheckDates(sdf.format(new Date())+" "+sdf2.format(new Date()),pick_up_date.getText().toString()+" 0"+pickuptime.get(pick_time_pos))) {
@@ -520,12 +547,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
     }
 
-    public void dropOffDate(View view){
-        type = "drop";
-        new DatePickerDialog(Home.this, date, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-    }
 
     @Override
     protected void onResume() {
