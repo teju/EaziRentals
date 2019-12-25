@@ -1,9 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="eazi.com.eazirentals.ContactUs">
+    android:orientation="vertical"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    tools:context="eazi.com.eazirentals.TermsConditions">
+    <include layout="@layout/normal_header"
+        android:id="@+id/header">
+    </include>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:background="@color/yellow"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CONTACT FORM"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CSubcribe to receive new properties with good price."
+                        android:textColor="@color/black"
+                        android:layout_marginTop="5dp"
+                        android:textStyle="italic"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:id="@+id/name"
+                        android:hint="Your Name"
+                        android:inputType="text"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="10dp"
+                        android:textStyle="italic"
+                        android:layout_marginTop="20dp"
+                        android:background="#93fbf829"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:id="@+id/email"
+                        android:hint="Your Email"
+                        android:inputType="textEmailAddress"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="10dp"
+                        android:textStyle="italic"
+                        android:layout_marginTop="20dp"
+                        android:background="#93fbf829"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:id="@+id/mobile"
+                        android:hint="Your Mobile"
+                        android:inputType="number"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="10dp"
+                        android:textStyle="italic"
+                        android:layout_marginTop="20dp"
+                        android:background="#93fbf829"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:id="@+id/message"
+                        android:hint="Your Message"
+                        android:inputType="text"
+                        android:imeOptions="actionDone"
+                        android:paddingLeft="10dp"
+                        android:textStyle="italic"
+                        android:layout_marginTop="20dp"
+                        android:background="#93fbf829"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttob_bg"
+                        android:textColor="@color/yellow"
+                        android:text="Send Message"
+                        android:id="@+id/send_message"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="30dp"/>
+                </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+            </FrameLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OR"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <eazi.com.eazirentals.helper.CircleFillView
+                        android:id="@+id/circleFillView"
+                        android:layout_width="match_parent"
+                        android:layout_height="360dp"
+                        android:rotation="180"
+                        android:background="@android:color/transparent"
+                        custom:fillColor="#000000"
+                        custom:strokeColor="@android:color/transparent"
+                        custom:strokeWidth="20"
+                        custom:value="65" />
+                    <eazi.com.eazirentals.helper.CircleFillView
+                        android:layout_width="match_parent"
+                        android:layout_height="360dp"
+                        android:background="@android:color/transparent"
+                        custom:fillColor="@color/yellow"
+                        custom:strokeColor="@android:color/transparent"
+                        custom:strokeWidth="20"
+                        custom:value="35" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="40dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="50dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+
+                    android:layout_marginRight="10dp"
+                    android:layout_height="360dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="HOW TO FIND US"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:drawableTint="@color/white"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:drawableLeft="@drawable/map_marker"
+                        android:layout_gravity="center_vertical"
+                        android:text="331/B KIADB Industrial Area, Near Infosys Gate No.2, Hebbal Mysore - 570018"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" +91 8047091579"
+                        android:layout_gravity="center_horizontal"
+                        android:drawableLeft="@drawable/phone"
+                        android:id="@+id/phone"
+                        android:drawableTint="@color/white"
+                        android:layout_marginTop="10dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="info@eezeerentals.com"
+                        android:id="@+id/send_email"
+                        android:layout_marginTop="10dp"
+                        android:drawableTint="@color/white"
+                        android:textAlignment="center"
+                        android:drawableLeft="@drawable/email"
+                        android:drawablePadding="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="@color/white"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buttob_bg"
+                        android:textColor="@color/yellow"
+                        android:text="Open Map"
+                        android:id="@+id/open_map"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="50dp"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

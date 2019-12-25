@@ -9,6 +9,7 @@ public class ConstantStrings {
     public static String common_msg = "Something went wrong. Please try again later";
     public static String no_internet = "Please check your internet connection";
     public static String invalid_name = "Please enter name";
+    public static String invalid_meaage = "Please enter message";
     public static String invalid_phone = "Please enter valid mobile number";
     public static String invalid_email = "Please enter valid Email";
     public static String invalid_password = "Please enter valid password";

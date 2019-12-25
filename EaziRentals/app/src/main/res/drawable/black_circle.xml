@@ -1,0 +1,36 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<shape-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:shape="oval">-->
+
+    <!--<gradient-->
+        <!--android:centerX="-1"-->
+        <!--android:type="sweep"-->
+        <!--android:startColor="@color/yellow"-->
+        <!--android:endColor="@color/black"-->
+        <!--/>-->
+
+    <!--<size-->
+        <!--android:width="120dp"-->
+        <!--android:height="120dp"/>-->
+<!--</shape>-->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<item android:bottom="20dp">
+    <shape android:shape="oval" >
+        <size
+            android:width="120dp"
+            android:height="120dp"/>
+        <solid android:color="#ff0000" />
+    </shape>
+</item>
+
+<item android:top="20dp">
+    <shape android:shape="oval" >
+        <size
+            android:width="120dp"
+            android:height="120dp"/>
+        <solid android:color="#0000ff" />
+    </shape>
+</item>
+</layer-list>

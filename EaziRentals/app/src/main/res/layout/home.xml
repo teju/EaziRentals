@@ -18,12 +18,56 @@
             <eazi.com.eazirentals.library.CustomViewPager
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/view_pager"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:visibility="visible"
+                    android:src="@drawable/mountain"
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="#53000000"
+
+                    android:orientation="vertical"
+                    android:layout_height="210dp">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/logo"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:textAllCaps="true"
+                        android:text="Unlimited kilometers,Unlimited fun"/>
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:textColor="@color/yellow"
+                        android:background="@drawable/rectangle"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"
+                        android:textAllCaps="true"
+                        android:text="Go Explore now"/>
+
+                </LinearLayout>
+            </FrameLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:background="@color/dark_gray"
+                android:background="@color/yellow"
                 android:paddingTop="10dp"
                 android:paddingBottom="30dp"
                 android:gravity="center_horizontal|center_vertical"

@@ -1,5 +1,7 @@
 package eazi.com.eazirentals;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -32,16 +35,63 @@ public class AboutUs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
-        GetCMS();
+        // GetCMS();
+        initUI();
+    }
+
+
+    private void initUI() {
         ImageView back = (ImageView)findViewById(R.id.back);
+        ImageView keerti_fb = (ImageView)findViewById(R.id.keerti_fb);
+        ImageView youtube = (ImageView)findViewById(R.id.youtube);
+        LinearLayout bijesh_fb = (LinearLayout) findViewById(R.id.bijesh_fb);
+        LinearLayout champak_fb = (LinearLayout) findViewById(R.id.champak_fb);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AboutUs.super.onBackPressed();
             }
         });
+        keerti_fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reDirectToWebPAge("https://www.facebook.com/keerthi.ekambaram");
+            }
+        });
+        youtube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reDirectToWebPAge("https://www.youtube.com/c/KeerthiEkambaram");
+
+            }
+        });
+        bijesh_fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reDirectToWebPAge("https://www.facebook.com/bijesh.karakat");
+
+            }
+        });
+        champak_fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reDirectToWebPAge("https://www.facebook.com/champak524232");
+
+            }
+        });
     }
 
+    public void reDirectToWebPAge(String url) {
+        Intent i = new Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(url)
+        );
+        startActivity(i);
+// Starts Implicit Activity
+    }
+
+
+/*
     public void GetCMS() {
         try {
             final List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -82,5 +132,6 @@ public class AboutUs extends AppCompatActivity {
         }
 
     }
+*/
 
 }

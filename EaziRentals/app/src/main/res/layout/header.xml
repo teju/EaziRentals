@@ -36,8 +36,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_centerVertical="true"
-        android:id="@+id/notifications"
-        android:src="@drawable/bell" />
+        android:id="@+id/notifications"/>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_marginRight="20dp"
