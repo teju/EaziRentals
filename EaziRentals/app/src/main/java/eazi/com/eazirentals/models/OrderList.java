@@ -28,6 +28,18 @@ public class OrderList {
     @Expose
     private String rider_name;
 
+    public String getBooking_id() {
+        return booking_id;
+    }
+
+    public void setBooking_id(String booking_id) {
+        this.booking_id = booking_id;
+    }
+
+    @SerializedName("booking_id")
+    @Expose
+    private String booking_id;
+
     public String getBooking_date() {
         return booking_date;
     }

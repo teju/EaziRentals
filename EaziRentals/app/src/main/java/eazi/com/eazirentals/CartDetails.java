@@ -253,18 +253,19 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
         final Activity activity = this;
 
         final Checkout co = new Checkout();
+        double total_amt = subtotal + Helper.calculateGst(subtotal) - getIntent().getDoubleExtra(Constants.DISCOUNT,0.0);
 
         try {
             JSONObject options = new JSONObject();
             options.put("name", data.getUser_details().getName());
-            options.put("description", "Demoing Charges");
+            options.put("description", getResources().getString(R.string.app_name)+" Payment");
             //You can omit the image option to fetch the image from dashboard
             options.put("currency", "INR");
-            options.put("amount", "100");
+            options.put("amount", 1 * 100);
 
             JSONObject preFill = new JSONObject();
             preFill.put("email", data.getUser_details().getEmail_id());
-            preFill.put("contact", "9964062237");
+            preFill.put("contact", mobile_number.getText().toString());
 
             options.put("prefill", preFill);
 

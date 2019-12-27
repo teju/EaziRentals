@@ -73,6 +73,7 @@ public class BookingHistory extends AppCompatActivity {
             OrderList orderList =data.getOrder_list().getOrder_list().get(i);
             View child = inflater.inflate(R.layout.order_history_item, null);
             ImageView bike_img = (ImageView)child.findViewById(R.id.bike_img);
+            TextView bike_id = (TextView)child.findViewById(R.id.bike_id);
             TextView bike_name = (TextView)child.findViewById(R.id.bike_name);
             TextView pickup_date = (TextView)child.findViewById(R.id.pickup_date);
             TextView dropup_date = (TextView)child.findViewById(R.id.dropup_date);
@@ -82,6 +83,7 @@ public class BookingHistory extends AppCompatActivity {
             bike_name.setText(orderList.getRider_name());
             dropup_date.setText(orderList.getDropup_date());
             status.setText("Status: "+orderList.getStatus());
+            bike_id.setText("Booking ID: "+orderList.getBooking_id());
             if(orderList.getStatus().equalsIgnoreCase("payment failed")) {
                 status.setTextColor(getResources().getColor(R.color.orange));
             } else {

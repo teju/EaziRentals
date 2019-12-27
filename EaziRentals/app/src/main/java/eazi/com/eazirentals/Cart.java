@@ -127,7 +127,12 @@ public class Cart extends AppCompatActivity implements View.OnClickListener{
             db.deleteFromCart(bikeListsTemp.get(i).getId());
             setList();
         } else if(v.getId() == R.id.add_more) {
-            Intent i = new Intent(Cart.this,Home.class);
+            Intent i = new Intent(Cart.this,SelectBike.class);
+            i.putExtra(Constants.PICKUP_TIME,getIntent().getStringExtra(Constants.PICKUP_TIME));
+            i.putExtra(Constants.PICKUP_DATE,getIntent().getStringExtra(Constants.PICKUP_DATE));
+            i.putExtra(Constants.DROP_TIME,getIntent().getStringExtra(Constants.DROP_TIME));
+            i.putExtra(Constants.DROP_DATE,getIntent().getStringExtra(Constants.DROP_DATE));
+            i.putExtra(Constants.PICKUP_LOCATION,getIntent().getStringExtra(Constants.PICKUP_LOCATION));
             startActivity(i);
         }  else if(v.getId() == R.id.checkout) {
             Intent i =new Intent(Cart.this,CartDetails.class);

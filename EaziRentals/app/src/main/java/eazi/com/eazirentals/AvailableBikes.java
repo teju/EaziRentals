@@ -208,6 +208,11 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
                 new CustomToast().Show_Toast(AvailableBikes.this, ConstantStrings.noitems_in_cart, R.color.light_red2);
             } else {
                 Intent i =new Intent(AvailableBikes.this,Cart.class);
+                i.putExtra(Constants.PICKUP_TIME,getIntent().getStringExtra(Constants.PICKUP_TIME));
+                i.putExtra(Constants.PICKUP_DATE,getIntent().getStringExtra(Constants.PICKUP_DATE));
+                i.putExtra(Constants.DROP_TIME,getIntent().getStringExtra(Constants.DROP_TIME));
+                i.putExtra(Constants.DROP_DATE,getIntent().getStringExtra(Constants.DROP_DATE));
+                i.putExtra(Constants.PICKUP_LOCATION,getIntent().getStringExtra(Constants.PICKUP_LOCATION));
                 startActivity(i);
             }
 
