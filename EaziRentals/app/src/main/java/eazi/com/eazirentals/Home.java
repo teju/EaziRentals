@@ -2,6 +2,8 @@ package eazi.com.eazirentals;
 
 import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
+import android.app.TaskStackBuilder;
+import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -84,6 +86,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private ArrayAdapter pickup_timeaa;
     private ArrayAdapter drop_timeaa;
     private BranchListResponse data;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +145,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         };
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
@@ -374,7 +377,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         DatePickerDialog datePickerDialog = new DatePickerDialog(Home.this, date, myCalendar
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH));
-        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         datePickerDialog.show();
     }
 
@@ -385,7 +388,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 myCalendar.get(Calendar.DAY_OF_MONTH));
         Date d =convertToDate(pick_up_date.getText().toString());
         System.out.println("dropOffDate "+convertToDate(pick_up_date.getText().toString()));
-        datePickerDialog.getDatePicker().setMinDate(d.getTime());
+        datePickerDialog.getDatePicker().setMinDate(d.getTime() - 1000);
         datePickerDialog.show();
 
     }
@@ -605,13 +608,23 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 public void onClick(DialogInterface dialog, int which) {
                     if(which == dialog.BUTTON_POSITIVE) {
                         SharedPreference.clear(Home.this);
-                        Intent i = new Intent(Home.this,LoginActivity.class);
-                        startActivity(i);
+
+                        Intent intent = new Intent(Home.this,LoginActivity.class);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+                        onTrimMemory(ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN);
                     }
 
                 }
             },"Ok","Cancel");
         }
+        drawer.closeDrawers();
         return true;
     }
 
@@ -698,12 +711,16 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if(which == dialog.BUTTON_POSITIVE) {
-                    Intent a = new Intent(Intent.ACTION_MAIN);
-                    a.addCategory(Intent.CATEGORY_HOME);
-                    a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(a);
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_HOME);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
+                    onTrimMemory(ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN);
                 }
             }
         },"OK","Cancel");

@@ -261,7 +261,7 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
             options.put("description", getResources().getString(R.string.app_name)+" Payment");
             //You can omit the image option to fetch the image from dashboard
             options.put("currency", "INR");
-            options.put("amount", 1 * 100);
+            options.put("amount", total_amt * 100);
 
             JSONObject preFill = new JSONObject();
             preFill.put("email", data.getUser_details().getEmail_id());

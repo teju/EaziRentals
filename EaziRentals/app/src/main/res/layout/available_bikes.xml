@@ -4,6 +4,16 @@
     android:layout_width="match_parent"
     android:background="@color/background"
     android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/light_red2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textAlignment="center"
+        android:id="@+id/no_list"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -42,6 +52,10 @@
                     android:id="@+id/pick_up_time"
                     android:textAlignment="center" />
             </LinearLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black" />
             <LinearLayout
                 android:layout_width="0dp"
                 android:orientation="vertical"

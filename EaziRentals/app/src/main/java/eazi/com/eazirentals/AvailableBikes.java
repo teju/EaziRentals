@@ -50,6 +50,7 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
     private TextView dropoff_up_time,pick_up_time;
     private DataBaseHelper db;
     private TextView cart_count;
+    private TextView no_list;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -84,11 +85,12 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
         Button book_now = (Button)findViewById(R.id.book_now);
         book_now.setOnClickListener(this);
         dropoff_up_time = (TextView)findViewById(R.id.dropoff_up_time);
+        no_list = (TextView)findViewById(R.id.no_list);
         pick_up_time = (TextView)findViewById(R.id.pick_up_time);
         pick_up_time.setText(Helper.convertDate(getIntent().
-                getStringExtra(Constants.PICKUP_DATE),Constants.format_3,Constants.format_2)+", "+getIntent().getStringExtra(Constants.PICKUP_TIME));
+                getStringExtra(Constants.PICKUP_DATE),Constants.format_3,Constants.format_2)+",\n"+getIntent().getStringExtra(Constants.PICKUP_TIME));
         dropoff_up_time.setText(Helper.convertDate(getIntent().getStringExtra(Constants.DROP_DATE),Constants.format_3,Constants.format_2)+
-                ", "+getIntent().getStringExtra(Constants.DROP_TIME));
+                ",\n"+getIntent().getStringExtra(Constants.DROP_TIME));
         callGetBikeList();
 
     }
@@ -177,10 +179,10 @@ public class AvailableBikes extends AppCompatActivity implements View.OnClickLis
 
                             } else {
                                 if (data.getMessage() != null) {
-                                    new CustomToast().Show_Toast(AvailableBikes.this, data.getMessage(), R.color.light_red2);
+                                    no_list.setText(data.getMessage());
 
                                 } else {
-                                    new CustomToast().Show_Toast(AvailableBikes.this, ConstantStrings.common_msg, R.color.light_red2);
+                                    no_list.setText("We are completely sold out on these bikes for the specified period. Please check some other bikes");
                                 }
                             }
                         } else {

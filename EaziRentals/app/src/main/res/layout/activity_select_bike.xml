@@ -41,6 +41,11 @@
                 android:id="@+id/pick_up_time"
                 android:textAlignment="center" />
         </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/black" />
+
         <LinearLayout
             android:layout_width="0dp"
             android:orientation="vertical"
@@ -106,7 +111,6 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         android:horizontalSpacing="7dp"
-        android:layout_marginBottom="70dp"
         android:layout_below="@+id/title_text"
         android:stretchMode="columnWidth" />
     <Button

@@ -66,6 +66,7 @@ public class SelectCity extends AppCompatActivity {
 
             Intent i = new Intent(this,Home.class);
             startActivity(i);
+            finish();
         }
 
     }
