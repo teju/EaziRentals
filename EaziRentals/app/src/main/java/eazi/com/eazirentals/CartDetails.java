@@ -194,7 +194,8 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
 
             Loader.show(this);
 
-            APICalls.invokeAPIEx(this,"Post",APICalls.SERVICE_URL+APICalls.CHECKOUT,jsonObject.toString(),new Handler(new Handler.Callback() {
+            APICalls.invokeAPIEx(this,"Post",APICalls.SERVICE_URL+APICalls.CHECKOUT,
+                    jsonObject.toString(),new Handler(new Handler.Callback() {
                 @Override
                 public boolean handleMessage(Message message) {
                     Loader.hide();
@@ -262,12 +263,19 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
             //You can omit the image option to fetch the image from dashboard
             options.put("currency", "INR");
             options.put("amount", total_amt * 100);
+            //options.put("amount", 1);
+            options.put("order_id", generalResult.getOrder_id());
+            options.put("merchant_order_id", generalResult.getInvoice_id());
 
             JSONObject preFill = new JSONObject();
+            JSONObject notes = new JSONObject();
+            notes.put("shopping_order_id", generalResult.getInvoice_id());
+
             preFill.put("email", data.getUser_details().getEmail_id());
             preFill.put("contact", mobile_number.getText().toString());
 
             options.put("prefill", preFill);
+            options.put("notes", notes);
 
             co.open(activity, options);
             System.out.println("Payment1234 preFill "+options.toString());
@@ -281,7 +289,7 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onPaymentSuccess(String s) {
         System.out.println("Payment1234 onPaymentSuccess "+s);
-        callPaymentConfirmationAPI(s, "success");
+        callPaymentConfirmationAPI(generalResult.getOrder_id(), "success");
     }
 
     public void callPaymentConfirmationAPI(final String razorpay_order_id, final String status) {
@@ -344,7 +352,7 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onPaymentError(int i, String s) {
         System.out.println("Payment1234 onPaymentError "+s);
-        callPaymentConfirmationAPI(s,"fail");
+        callPaymentConfirmationAPI(generalResult.getOrder_id(),"fail");
 
     }
 }

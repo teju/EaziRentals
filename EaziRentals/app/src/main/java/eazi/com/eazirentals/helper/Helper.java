@@ -100,7 +100,7 @@ public class Helper {
         return false;
     }
     public static double calculateGst(double total){
-        double gst = (total / 100.0f) * 15;
+        double gst = (total / 100.0f) * 5;
         return gst;
     }
 

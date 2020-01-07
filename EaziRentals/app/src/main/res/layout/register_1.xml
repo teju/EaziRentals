@@ -88,40 +88,65 @@
                 android:textColorHint="@color/black"
                 android:textSize="16dp" />
 
-            <EditText
-                android:id="@+id/password"
+            <LinearLayout
+                android:id="@+id/llpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
+                android:visibility="visible"
                 android:layout_marginRight="40dp"
                 android:layout_marginTop="10dp"
-                android:background="@android:drawable/editbox_background_normal"
-                android:drawableLeft="@drawable/eye"
-                android:drawablePadding="15dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="12dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:textSize="16dp" />
+                android:orientation="horizontal"
+                android:background="@android:drawable/editbox_background_normal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/eye"
+                    android:src="@drawable/eye"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:padding="6dp"
+                    android:hint="Password(min 6 char)"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="12dp"
+                    android:background="@android:color/transparent"
+                    android:textColorHint="@color/black"
+                    android:id="@+id/password" />
 
-            <EditText
-                android:id="@+id/rpassword"
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llrpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
+                android:visibility="visible"
                 android:layout_marginRight="40dp"
                 android:layout_marginTop="10dp"
-                android:background="@android:drawable/editbox_background_normal"
-                android:drawableLeft="@drawable/eye"
-                android:drawablePadding="15dp"
-                android:inputType="textPassword"
+                android:orientation="horizontal"
+                android:background="@android:drawable/editbox_background_normal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/reye"
+                    android:src="@drawable/eye"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:padding="6dp"
+                    android:hint="Repeat Password(min 6 char)"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="12dp"
+                    android:background="@android:color/transparent"
+                    android:textColorHint="@color/black"
+                    android:id="@+id/rpassword" />
 
-                android:hint="Repeat Password"
-                android:padding="12dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:textSize="16dp" />
+            </LinearLayout>
+
 
 
             <Button

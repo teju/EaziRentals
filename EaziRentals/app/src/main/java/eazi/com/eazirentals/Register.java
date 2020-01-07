@@ -6,9 +6,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -36,8 +40,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
     private EditText name,phone,email,password,rpassword;
     private TextView title;
-    private boolean isRegister,ISFromCart;
+    private boolean isRegister,ISFromCart,isPasswordVisible = false,isRpasswordVisible =false;
     private VerifyOtpResult data;
+    private LinearLayout llpassword,llrpassword;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,31 +54,63 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     public void initUI(){
 
         title = (TextView)findViewById(R.id.title);
+        ImageView eye = (ImageView) findViewById(R.id.eye);
+        ImageView reye = (ImageView) findViewById(R.id.reye);
         name = (EditText)findViewById(R.id.name);
         phone = (EditText)findViewById(R.id.phone);
         email = (EditText)findViewById(R.id.email);
         password = (EditText)findViewById(R.id.password);
+        llpassword = (LinearLayout)findViewById(R.id.llpassword);
+        llrpassword = (LinearLayout)findViewById(R.id.llrpassword);
         rpassword = (EditText)findViewById(R.id.rpassword);
         isRegister = getIntent().getBooleanExtra(Constants.ISRegister,true);
         ISFromCart = getIntent().getBooleanExtra(Constants.ISFromCart,false);
         if(isRegister) {
             title.setVisibility(View.VISIBLE);
             phone.setVisibility(View.VISIBLE);
-            password.setVisibility(View.VISIBLE);
-            rpassword.setVisibility(View.VISIBLE);
+            llpassword.setVisibility(View.VISIBLE);
+            llrpassword.setVisibility(View.VISIBLE);
         } else {
             callGetUSerprofileAPI();
             title.setVisibility(View.GONE);
-            password.setVisibility(View.GONE);
-            rpassword.setVisibility(View.GONE);
+            llpassword.setVisibility(View.GONE);
+            llrpassword.setVisibility(View.GONE);
         }
         Button signup =(Button)findViewById(R.id.signup);
         signup.setOnClickListener(this);
+
+        eye.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!isPasswordVisible) {
+                    password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    isPasswordVisible = true;
+                } else {
+                    password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    isPasswordVisible = false;
+                }
+
+            }
+        });
+        reye.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!isRpasswordVisible) {
+                    rpassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    isRpasswordVisible = true;
+                } else {
+                    rpassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    isRpasswordVisible = false;
+                }
+
+            }
+        });
     }
 
     public void setUSerDetails() {
         name.setText(data.getUser_details().getName());
         email.setText(data.getUser_details().getEmail_id());
+        phone.setText(data.getUser_details().getMobile_no());
     }
 
 
@@ -120,7 +157,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             new CustomToast().Show_Toast(this, ConstantStrings.invalid_email, R.color.light_red2);
             return false;
         }
-        if(!Helper.isValidPassword(password.getText().toString())){
+        if(!Helper.isValidString(password.getText().toString()) && password.getText().toString().length() < 6){
             new CustomToast().Show_Toast(this, ConstantStrings.invalid_password, R.color.light_red2);
             return false;
         }

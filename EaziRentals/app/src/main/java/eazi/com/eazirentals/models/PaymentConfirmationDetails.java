@@ -32,5 +32,17 @@ public class PaymentConfirmationDetails {
     @Expose
     private String message;
 
+    public String getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(String totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    @SerializedName("totalAmount")
+    @Expose
+    private String totalAmount;
+
 
 }

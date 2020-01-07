@@ -239,11 +239,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     drop_Off_Date.setText(output);
                     System.out.println("toNearestWholeMinuteday_of_week "+day_of_week+" "+day_of_week.contains("Sat"));
                     if (day_of_week.contains("Sat") || day_of_week.contains("Sun")) {
-                        return "8:30";
+                        return "7:30";
                     } else {
                         System.out.println("toNearestWholeMinuteday_of_week 7:30 one");
 
-                        return "7:30";
+                        return "8:30";
                     }
                 } else {
                     return start_time;
@@ -257,7 +257,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         String output = sdf.format(c.getTime());
                         pick_up_date.setText(output);
                         drop_Off_Date.setText(output);
-                        return "8:30";
+                        return "7:30";
                     } else {
                         return start_time;
                     }
@@ -269,7 +269,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         String output = sdf.format(c.getTime());
                         pick_up_date.setText(output);
                         drop_Off_Date.setText(output);
-                        return "7:30";
+                        return "8:30";
                     } else {
                         return start_time;
                     }
@@ -281,9 +281,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 drop_Off_Date.setText(pick_up_date.getText().toString());
             }
             if (day_of_week.contains("Sat") || day_of_week.contains("Sun")) {
-                return "8:30";
-            } else {
                 return "7:30";
+            } else {
+                return "8:30";
             }
         }
     }
