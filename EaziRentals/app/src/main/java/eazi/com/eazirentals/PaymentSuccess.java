@@ -29,7 +29,7 @@ public class PaymentSuccess extends AppCompatActivity implements View.OnClickLis
         TextView booking_id = (TextView) findViewById(R.id.booking_id);
         TextView status = (TextView) findViewById(R.id.status);
         total.setText(getIntent().getStringExtra(Constants.TOTAL));
-        booking_id.setText(getIntent().getStringExtra(Constants.PAYMENTID));
+        booking_id.setText("Booking Id :"+getIntent().getStringExtra(Constants.PAYMENTID));
         status.setText(getIntent().getStringExtra(Constants.STATUS));
         if(status.getText().toString().contains("fail")) {
             total.setVisibility(View.GONE);

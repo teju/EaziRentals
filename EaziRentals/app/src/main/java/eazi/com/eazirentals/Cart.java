@@ -60,7 +60,7 @@ public class Cart extends AppCompatActivity implements View.OnClickListener{
         db = new DataBaseHelper(this);
         ImageView back = (ImageView) findViewById(R.id.back);
         coupon_code = (EditText) findViewById(R.id.coupon_code);
-        coupon_code.setFocusable(false);
+       // coupon_code.setFocusable(false);
         Button add_more = (Button) findViewById(R.id.add_more);
         Button view_more = (Button) findViewById(R.id.view_more);
         total_price = (TextView) findViewById(R.id.total_price);

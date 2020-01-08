@@ -235,7 +235,7 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
     private void setUSerDetails() {
         name.setText(data.getUser_details().getName());
         email_id.setText(data.getUser_details().getEmail_id());
-        mobile_number.setText(SharedPreference.getString(CartDetails.this, Constants.KEY_MOBILE_NO));
+        mobile_number.setText(data.getUser_details().getMobile_no());
         address.setText(data.getUser_details().getAddress());
         city.setText(data.getUser_details().getCity());
         state.setText(data.getUser_details().getState());

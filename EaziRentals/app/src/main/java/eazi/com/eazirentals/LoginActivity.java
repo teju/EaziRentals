@@ -275,6 +275,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 SharedPreference.setString(LoginActivity.this, Constants.KEY_USER_ID,data.getUser_details().getUser_id());
                                 SharedPreference.setString(LoginActivity.this, Constants.KEY_USER_NAME,data.getUser_details().getName());
                                 SharedPreference.setString(LoginActivity.this, Constants.KEY_ACCESS_TOKEN,data.getUser_details().getAccess_token());
+                                SharedPreference.setString(LoginActivity.this, Constants.KEY_MOBILE_NO,data.getUser_details().getMobile_no());
                                 Intent i = new Intent(LoginActivity.this,SelectCity.class);
                                 startActivity(i);
                                 finish();
