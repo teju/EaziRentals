@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -34,9 +35,8 @@ import eazi.com.eazirentals.models.StateResult;
 
 public class Register2 extends AppCompatActivity implements View.OnClickListener{
     String[] city_list = {"Bengaluru" , "Mysore"};
-    private EditText address,dl;
+    private EditText address,dl,city;
     int state_selected_pos = 0;
-    int city_selected_pos = 0;
     private CheckBox agree;
     private StateResult stateResult;
     private boolean isRegister;
@@ -55,6 +55,7 @@ public class Register2 extends AppCompatActivity implements View.OnClickListener
         callStatesAPI();
 
         address = (EditText)findViewById(R.id.address);
+        TextView terms = (TextView) findViewById(R.id.terms);
         LinearLayout terms_conditions = (LinearLayout) findViewById(R.id.terms_conditions);
         dl = (EditText)findViewById(R.id.dl);
         agree = (CheckBox)findViewById(R.id.agree);
@@ -65,6 +66,13 @@ public class Register2 extends AppCompatActivity implements View.OnClickListener
             terms_conditions.setVisibility(View.GONE);
             submit.setText("Update");
         }
+        terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Register2.this,TermsConditions.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void setUSerDetails() {
@@ -90,22 +98,8 @@ public class Register2 extends AppCompatActivity implements View.OnClickListener
             }
         });
 
-        Spinner city = (Spinner) findViewById(R.id.city);
-        ArrayAdapter drop_timeaa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,city_list);
-        drop_timeaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        city.setAdapter(drop_timeaa);
-        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                city_selected_pos = position;
-            }
+         city = (EditText) findViewById(R.id.city);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         if (getIntent().getStringExtra(Constants.STATE) != null) {
             int spinnerPosition = state_adapter.getPosition(getIntent().getStringExtra(Constants.STATE));
             System.out.println("Register2 spinnerPosition "+spinnerPosition+" STATE "+getIntent().getStringExtra(Constants.STATE));
@@ -119,6 +113,10 @@ public class Register2 extends AppCompatActivity implements View.OnClickListener
             return false;
         }
         if(!Helper.isValidString(dl.getText().toString())){
+            new CustomToast().Show_Toast(this, ConstantStrings.invalid_dl, R.color.light_red2);
+            return false;
+        }
+        if(!Helper.isValidString(city.getText().toString())){
             new CustomToast().Show_Toast(this, ConstantStrings.invalid_dl, R.color.light_red2);
             return false;
         }
@@ -194,7 +192,7 @@ public class Register2 extends AppCompatActivity implements View.OnClickListener
 
             params.add(new BasicNameValuePair("address", address.getText().toString()));
             params.add(new BasicNameValuePair("state", stateResult.getStates().get(state_selected_pos)));
-            params.add(new BasicNameValuePair("city", city_list[city_selected_pos]));
+            params.add(new BasicNameValuePair("city", city.getText().toString()));
 
             params.add(new BasicNameValuePair("driving_licence", dl.getText().toString()));
             params.add(new BasicNameValuePair("email_id", getIntent().getStringExtra(Constants.USER_EMAIL)));

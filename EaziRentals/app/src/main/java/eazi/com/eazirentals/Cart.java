@@ -26,8 +26,11 @@ import com.google.gson.Gson;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import eazi.com.eazirentals.api.APICalls;
 import eazi.com.eazirentals.helper.ConstantStrings;
@@ -78,8 +81,9 @@ public class Cart extends AppCompatActivity implements View.OnClickListener{
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         cartList.removeAllViews();
         List<BikeList> bikeListsTemp = db.getAllContacts("");
-        double total_amt = calculateTotal() + Helper.calculateGst(calculateTotal())  - discount;
 
+        double total_amt = calculateTotal()  - discount;
+        total_amt = total_amt +  Helper.calculateGst(total_amt);
         total_price.setText("TOTAL : \u20B9 "+total_amt);
         if(bikeListsTemp.size() == 0) {
             bottomView.setVisibility(View.GONE);
@@ -111,7 +115,19 @@ public class Cart extends AppCompatActivity implements View.OnClickListener{
             to_date.setText(Helper.convertDate(bikeList.getTo(), Constants.format_6,Constants.format_7)+"\n"
                     +Helper.convertDate(bikeList.getTo(), Constants.format_6,Constants.format_8)+"\n"
                     +Helper.convertDate(bikeList.getTo(), Constants.format_6,Constants.format_4));
-            price.setText("\u20B9 "+bikeList.getPrice());
+
+//            int days = (int) Daybetween(bikeList.getFrom(),bikeList.getTo(),Constants.format_6);
+//            if(days > 20){
+//                double gst = (Double.parseDouble(bikeList.getPrice()) / 100.0f) * 40;
+//                discount = discount + gst;
+//            } else if(days > 29) {
+//                double gst = (Double.parseDouble(bikeList.getPrice()) / 100.0f) * 45;
+//                discount = discount + gst;
+//            }
+//            System.out.println("NoOFDAYS "
+//                    +Daybetween(bikeList.getFrom(),bikeList.getTo(),Constants.format_6) + "discount "+discount);
+
+            price.setText("\u20B9 "+String.format("%.2f", Double.parseDouble(bikeList.getPrice())));
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams
                     (ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(10, 10, 10, 10);
@@ -119,6 +135,19 @@ public class Cart extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
+    public long Daybetween(String date1,String date2,String pattern)
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.ENGLISH);
+        Date Date1 = null,Date2 = null;
+        try{
+            Date1 = sdf.parse(date1);
+            Date2 = sdf.parse(date2);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return (Date2.getTime() - Date1.getTime())/(24*60*60*1000);
+    }
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.delete_item) {
@@ -188,9 +217,10 @@ public class Cart extends AppCompatActivity implements View.OnClickListener{
             });
             sub_total.setText("\u20B9 " + calculateTotal());
             _discount.setText("\u20B9 " + discount);
-            gst.setText("\u20B9 " + String.format("%.2f", Helper.calculateGst(calculateTotal())));
-            double total_amt = calculateTotal() + Helper.calculateGst(calculateTotal()) - discount;
-            total.setText("\u20B9 " + total_amt);
+            double total_amt = calculateTotal()  - discount;
+            gst.setText("\u20B9 " + String.format("%.2f", Helper.calculateGst(total_amt)));
+            total_amt =  total_amt + Helper.calculateGst(total_amt);
+            total.setText("\u20B9 " +String.format("%.2f", total_amt) );
         } catch (Exception e){
 
         }
@@ -199,7 +229,7 @@ public class Cart extends AppCompatActivity implements View.OnClickListener{
     public void callApplyCoupon() {
         try {
             final List<NameValuePair> params = new ArrayList<NameValuePair>();
-            double total_amt = calculateTotal() + Helper.calculateGst(calculateTotal());
+            double total_amt = calculateTotal() ;
 
             params.add(new BasicNameValuePair("user_id", SharedPreference.getString(Cart.this, Constants.KEY_USER_ID)));
             params.add(new BasicNameValuePair("access_token",SharedPreference.getString(Cart.this,Constants.KEY_ACCESS_TOKEN)));
@@ -226,9 +256,9 @@ public class Cart extends AppCompatActivity implements View.OnClickListener{
                                 }
                                 discount = Double.parseDouble(data.getCoupon_details().getDiscount_amount());
                                 couponMessage.setText(data.getCoupon_details().getMessage());
-                                double total_amt = calculateTotal() + Helper.calculateGst(calculateTotal())  - discount;
-
-                                total_price.setText("TOTAL : \u20B9 "+total_amt);
+                                double total_amt = calculateTotal()   - discount;
+                                total_amt = total_amt + Helper.calculateGst(total_amt);
+                                total_price.setText("TOTAL : \u20B9 "+String.format("%.2f", total_amt));
                             } else {
                                 if (data.getCoupon_details().getMessage() != null) {
                                 } else {

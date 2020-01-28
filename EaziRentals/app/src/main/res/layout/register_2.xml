@@ -89,32 +89,21 @@
                     android:textSize="16dp" />
             </LinearLayout>
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/city"
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="44dp"
-                android:layout_marginRight="44dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginTop="13dp"
-                android:background="@drawable/spinner_bg"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:paddingLeft="3dp"
-                    android:src="@drawable/city"
-                    android:textColorHint="@color/black" />
-
-                <Spinner
-                    android:id="@+id/city"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:hint="City"
-                    android:paddingLeft="3dp"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
-            </LinearLayout>
+                android:background="@android:drawable/editbox_background_normal"
+                android:drawableLeft="@drawable/city"
+                android:drawablePadding="15dp"
+                android:hint="City"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="16dp" />
 
             <EditText
                 android:id="@+id/referral_id"
