@@ -42,7 +42,8 @@ import eazi.com.eazirentals.models.VerifyOtpResult;
 public class CartDetails extends AppCompatActivity implements View.OnClickListener,PaymentResultListener {
     private DataBaseHelper db;
     private VerifyOtpResult data;
-    private TextView name,email_id,mobile_number,address,city,state,dl,sub_total,discount,gst,total,terms;
+    private TextView name,email_id,mobile_number,address,city,state,dl,sub_total,discount,gst,
+            total,terms,pick_address;
     private Button edit,continue_to_pay,view_maps;
     private CheckBox agree;
     private double subtotal = 0;
@@ -63,6 +64,7 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
         name = (TextView) findViewById(R.id.name);
         terms = (TextView) findViewById(R.id.terms);
         email_id = (TextView) findViewById(R.id.email_id);
+        pick_address = (TextView) findViewById(R.id.pick_address);
         mobile_number = (TextView) findViewById(R.id.mobile_number);
         address = (TextView) findViewById(R.id.address);
         city = (TextView) findViewById(R.id.city);
@@ -104,8 +106,7 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
 
             startActivity(i);
         } else  if(v.getId() == R.id.view_maps) {
-            String map = "http://maps.google.co.in/maps?q=" + getResources().getString(R.string.pick_address);
-
+            String map = "http://maps.google.co.in/maps?q=" + SharedPreference.getString(this,Constants.KEY_BRANCH_ADDRESS);
             Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                     Uri.parse(map));
             startActivity(intent);
@@ -245,6 +246,7 @@ public class CartDetails extends AppCompatActivity implements View.OnClickListen
         gst.setText("\u20B9 " + String.format("%.2f", Helper.calculateGst(subtotal)));
         double total_amt = subtotal + Helper.calculateGst(subtotal) - getIntent().getDoubleExtra(Constants.DISCOUNT,0.0);
         total.setText("\u20B9 " + total_amt);
+        pick_address.setText(SharedPreference.getString(this,Constants.KEY_BRANCH_ADDRESS));
     }
 
     public void startPayment() {

@@ -280,6 +280,7 @@
         android:textColor="@color/dark1_gray"
         android:textStyle="bold"
         android:textSize="14dp"
+        android:id="@+id/pick_address"
         android:text="@string/pick_address"
         android:layout_margin="15dp"
         android:textAlignment="center"/>

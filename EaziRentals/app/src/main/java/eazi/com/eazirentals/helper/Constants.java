@@ -11,6 +11,8 @@ public class Constants {
     public static String KEY_MOBILE_NO = "KEY_MOBILE_NO";
     public static String KEY_BIO = "KEY_BIO";
     public static String KEY_ACCESS_TOKEN = "KEY_ACCESS_TOKEN";
+    public static String KEY_BRANCH_ADDRESS = "KEY_BRANCH_ADDRESS";
+    public static String KEY_GOOGLE_LOC = "KEY_GOOGLE_LOC";
     public static String KEY_CITY_ID = "KEY_CITY_ID";
     public static String KEY_MOBILE_NUMBER = "KEY_MOBILE_NUMBER";
     public static String KEY_FIREBASEID= "KEY_FIREBASEID";

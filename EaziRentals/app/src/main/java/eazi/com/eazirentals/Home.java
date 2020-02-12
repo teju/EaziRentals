@@ -638,6 +638,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             makeTimeList();
         } else if(parent.getId() == R.id.select_location) {
             select_location_pos = position;
+            SharedPreference.setString(Home.this, Constants.KEY_BRANCH_ADDRESS,data.getBike_list().get(select_location_pos).getAddress());
+            SharedPreference.setString(Home.this, Constants.KEY_GOOGLE_LOC,data.getBike_list().get(select_location_pos).getBranch_google_map());
+
             System.out.println("Home124 pick_time_pos");
 
         } else {

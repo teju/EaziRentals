@@ -37,6 +37,30 @@ public class Branch {
     @Expose
     private String name;
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @SerializedName("address")
+    @Expose
+    private String address;
+
+    public String getBranch_google_map() {
+        return branch_google_map;
+    }
+
+    public void setBranch_google_map(String branch_google_map) {
+        this.branch_google_map = branch_google_map;
+    }
+
+    @SerializedName("branch_google_map")
+    @Expose
+    private String branch_google_map;
+
 
 
 }

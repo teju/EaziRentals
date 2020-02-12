@@ -16,6 +16,7 @@ android {
             storePassword 'EeezeeRental'
         }
     }
+
     compileSdkVersion 26
     buildToolsVersion "28.0.3"
     defaultConfig {
@@ -38,6 +39,10 @@ android {
         javaMaxHeapSize "3g"//use 3Gb of ram to launch android
     }
     productFlavors {
+    }
+    packagingOptions{
+        doNotStrip '*/mips/*.so'
+        doNotStrip '*/mips64/*.so'
     }
 }
 

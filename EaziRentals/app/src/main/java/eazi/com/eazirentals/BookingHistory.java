@@ -83,7 +83,7 @@ public class BookingHistory extends AppCompatActivity {
             bike_name.setText(orderList.getRider_name());
             dropup_date.setText(orderList.getDropup_date());
             status.setText("Status: "+orderList.getStatus());
-            bike_id.setText("Booking ID: "+orderList.getBooking_id());
+            bike_id.setText("Invoice ID: "+orderList.getInvoice_id());
             if(orderList.getStatus().equalsIgnoreCase("payment failed")) {
                 status.setTextColor(getResources().getColor(R.color.orange));
             } else {
