@@ -208,7 +208,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     " ParseException "+e.toString());
             e.printStackTrace();
         }
-        System.out.println("toNearestWholeMinutecurrent_date " +
+        System.out.println("toNearestWholeMinutecurrent_datecalculateStartTime " +
                 " "+now_date.compareTo(current_date)+" now_date "+now_date+" current_date "+current_date);
 
         if(current_date.compareTo(now_date) == 0) {
@@ -227,7 +227,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             String start_time = secondsToString(start_hr, start_min);
             System.out.println("toNearestWholeMinute toNearest " + toNearest + " start_time " + start_time +
                     " minutes_to_add " + minutes_to_add + " day_of_week " +
-                    " " + day_of_week + " current_date " + current_date);
+                    " " + day_of_week + " current_date " + current_date+" start_hr "+start_hr);
 
             if (am_pm.equalsIgnoreCase("pm")) {
                 if (start_hr > 21) {
@@ -255,8 +255,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         c.setTime(current_date); // Now use today date.
                         c.add(Calendar.DATE, 1); // Adding 5 days
                         String output = sdf.format(c.getTime());
-                        pick_up_date.setText(output);
-                        drop_Off_Date.setText(output);
+//                        pick_up_date.setText(output);
+//                        drop_Off_Date.setText(output);
                         return "7:30";
                     } else {
                         return start_time;
@@ -267,8 +267,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         c.setTime(current_date); // Now use today date.
                         c.add(Calendar.DATE, 1); // Adding 5 days
                         String output = sdf.format(c.getTime());
-                        pick_up_date.setText(output);
-                        drop_Off_Date.setText(output);
+//                        pick_up_date.setText(output);
+//                        drop_Off_Date.setText(output);
                         return "8:30";
                     } else {
                         return start_time;
@@ -325,10 +325,38 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 j = j + 1;
             }
             pickup_timeaa.notifyDataSetChanged();
-            reverseList(pickuptime.get(pick_time_pos),true);
+            Date current_date = null;
+            try {
+                current_date = sdf.parse(drop_Off_Date.getText().toString());
+            } catch (ParseException e) {
+
+                e.printStackTrace();
+            }
+
+            Date now_date = null;
+            try {
+                now_date = sdf.parse(pick_up_date.getText().toString());
+            } catch (ParseException e) {
+
+                e.printStackTrace();
+            }
+
+            System.out.println("toNearestWholeMinutecurrent_date " +
+                   " now_date "+now_date+" current_date "+current_date
+                    +" "+pickuptime.get(pick_time_pos)+" calculateStartTime "+calculateStartTime()+" compareTo "+current_date.compareTo(now_date));
+            if(current_date.compareTo(now_date) == 0) {
+                reverseList(pickuptime.get(pick_time_pos), true);
+            } else {
+                String day_of_week = new SimpleDateFormat("EE", Locale.ENGLISH).format(current_date.getTime());
+                if (day_of_week.contains("Sat") || day_of_week.contains("Sun")) {
+                    reverseList("7:30 AM", false);
+                } else {
+                    reverseList("8:30 AM", false);
+                }
+            }
 
         } catch (Exception e){
-            System.out.println("toNearestWholeMinutemakeTimeList Exception "+e.toString() +" "+pickuptime.size());
+            System.out.println("toNearestWholeMinutemakeTimeList Exception11233 "+e.toString() +" "+pickuptime.size());
 
         }
     }
@@ -377,7 +405,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         DatePickerDialog datePickerDialog = new DatePickerDialog(Home.this, date, myCalendar
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH));
-        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() );
         datePickerDialog.show();
     }
 
@@ -388,7 +416,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 myCalendar.get(Calendar.DAY_OF_MONTH));
         Date d =convertToDate(pick_up_date.getText().toString());
         System.out.println("dropOffDate "+convertToDate(pick_up_date.getText().toString()));
-        datePickerDialog.getDatePicker().setMinDate(d.getTime() - 1000);
+        datePickerDialog.getDatePicker().setMinDate(d.getTime());
         datePickerDialog.show();
 
     }
@@ -444,7 +472,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             c.add(Calendar.HOUR, 1); // Adding 5 days
         }
         String output = sd.format(c.getTime());
-        try {
             SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
             Date date = null;
             try {
@@ -454,6 +481,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             }
             Double i = Double.parseDouble(new SimpleDateFormat("HH.mm", Locale.ENGLISH).format(date));
             System.out.println("toNearestWholeMinutemakeTimeList reverseList "+i);
+
             if(i > 21.30) {
                 setDropDate();
                 reverseList("7:30 AM",false);
@@ -481,10 +509,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             }
 
             drop_timeaa.notifyDataSetChanged();
-        } catch (Exception e){
-            System.out.println("toNearestWholeMinutemakeTimeList Exception reverseList "+e.toString());
 
-        }
 
     }
 
