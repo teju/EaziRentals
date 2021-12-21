@@ -239,9 +239,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     drop_Off_Date.setText(output);
                     System.out.println("toNearestWholeMinuteday_of_week "+day_of_week+" "+day_of_week.contains("Sat"));
                     if (day_of_week.contains("Sat") || day_of_week.contains("Sun")) {
-                        return "7:30";
+                        return "8:30";
                     } else {
-                        System.out.println("toNearestWholeMinuteday_of_week 7:30 one");
+                        System.out.println("toNearestWholeMinuteday_of_week 8:30 one");
 
                         return "8:30";
                     }
@@ -257,7 +257,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         String output = sdf.format(c.getTime());
 //                        pick_up_date.setText(output);
 //                        drop_Off_Date.setText(output);
-                        return "7:30";
+                        return "8:30";
                     } else {
                         return start_time;
                     }
@@ -281,7 +281,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 drop_Off_Date.setText(pick_up_date.getText().toString());
             }
             if (day_of_week.contains("Sat") || day_of_week.contains("Sun")) {
-                return "7:30";
+                return "8:30";
             } else {
                 return "8:30";
             }
@@ -349,7 +349,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             } else {
                 String day_of_week = new SimpleDateFormat("EE", Locale.ENGLISH).format(current_date.getTime());
                 if (day_of_week.contains("Sat") || day_of_week.contains("Sun")) {
-                    reverseList("7:30 AM", false);
+                    reverseList("8:30 AM", false);
                 } else {
                     reverseList("8:30 AM", false);
                 }
@@ -484,7 +484,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
             if(i > 21.30) {
                 setDropDate();
-                reverseList("7:30 AM",false);
+                reverseList("8:30 AM",false);
             }
             int j = 0;
             while (i <= 21.30 && i >= 7.30) {
